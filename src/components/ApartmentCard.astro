@@ -1,0 +1,22 @@
+---
+import Photo from './Photo.astro';
+import { unitPath, type PropertyUnit } from '../lib/property';
+
+interface Props { unit: PropertyUnit; lead?: boolean }
+const { unit, lead = false } = Astro.props;
+const cover = unit.photos[0];
+const facts = [
+  unit.areaSquareMetres && `${unit.areaSquareMetres} m²`,
+  unit.occupancyLabel,
+  unit.rooms[0]?.beds,
+].filter(Boolean);
+---
+<article class="apartment" id={`unit-${unit.id}`}>
+  <div class="card-image">
+    {cover
+      ? <Photo photo={cover} sizes={lead ? '(max-width: 800px) 92vw, 46vw' : '(max-width: 600px) 92vw, (max-width: 800px) 46vw, 30vw'} fallbackAlt={unit.name} />
+      : <div class="placeholder">Photos coming soon</div>}
+  </div>
+  <h3><a href={unitPath(unit.id)}>{unit.name}</a></h3>
+  {facts.length > 0 && <ul class="card-facts">{facts.map(fact => <li>{fact}</li>)}</ul>}
+</article>

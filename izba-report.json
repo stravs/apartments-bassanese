@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "status": "built",
+  "generatedAt": "2026-10-06T09:21:14.777Z",
+  "specSha256": "e0957a92ef65e5f9df1d09c204b4bb8d33a454e53ce4f06be935e33c41b00419",
+  "checks": {
+    "build": "passed",
+    "accessibility": "not-run",
+    "visual": "not-run",
+    "content": "needs-review"
+  },
+  "warnings": [
+    "Generation is not publication approval. Automated accessibility, SEO and visual gates are pending."
+  ]
+}

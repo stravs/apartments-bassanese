@@ -1,0 +1,67 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Layout from '../../layouts/Layout.astro';
+import Photo from '../../components/Photo.astro';
+import ApartmentCard from '../../components/ApartmentCard.astro';
+import { getProperty, pad, unitSlug } from '../../lib/property';
+import { photoUrl } from '../../lib/images';
+
+export const getStaticPaths = (async () => {
+  const property = await getProperty();
+  return property.units.map(unit => ({ params: { slug: unitSlug(unit.id) }, props: { property, unit } }));
+}) satisfies GetStaticPaths;
+
+const { property, unit } = Astro.props;
+const description = (unit.description ?? `${unit.name} — ${property.name}`).replace(/\s+/g, ' ').slice(0, 158);
+const [cover, ...morePhotos] = unit.photos;
+// Highlights first, then amenities not already listed.
+const facts = [...new Set([...(unit.highlights ?? []), ...unit.amenities])];
+const booking = unit.bookingUrl ?? property.bookingUrl;
+const otherUnits = property.units.filter(other => other.id !== unit.id);
+---
+<Layout title={`${unit.name} | ${property.name}`} {description} image={cover && await photoUrl(cover.url)} {property} {unit}>
+  <div class="unit-fold">
+  <div class="unit-stage wrap">
+  {cover && (
+    <figure class="unit-cover">
+      <button type="button" data-unit-index="0" data-unit-photo-index="0" aria-label={`View photos of ${unit.name}`}>
+        <Photo photo={cover} sizes="(max-width: 700px) 92vw, 90vw" fallbackAlt={unit.name} eager />
+      </button>
+    </figure>
+  )}
+
+  <div class="unit-side">
+    <h1 id="unit-title">{unit.name}</h1>
+    <a class="button unit-book" href={booking} target="_blank" rel="noopener noreferrer">Check availability <span aria-hidden="true">↗</span></a>
+    <ul class="unit-facts">
+      {unit.areaSquareMetres && <li>{unit.areaSquareMetres} m²</li>}
+      {unit.occupancyLabel && <li>{unit.occupancyLabel}</li>}
+      {unit.rooms.map(room => <li>{room.beds}</li>)}
+      {facts.map(fact => <li>{fact}</li>)}
+    </ul>
+  </div>
+  </div>
+  </div>
+
+  <section class="detail-gallery wrap" aria-label={`More photos of ${unit.name}`}>
+      {morePhotos.map((photo, index) => (
+        <figure>
+          <button type="button" data-unit-index="0" data-unit-photo-index={index + 1} aria-label={`View photo ${index + 2} of ${unit.name}`}>
+            <Photo {photo} sizes="(max-width: 700px) 92vw, 44vw" fallbackAlt={unit.name} />
+          </button>
+          <figcaption><span>{pad(index + 2)} / {pad(unit.photos.length)}</span></figcaption>
+        </figure>
+      ))}
+  </section>
+
+  {otherUnits.length > 0 && (
+    <section class="spaces wrap" slot="after-practical" aria-labelledby="other-spaces-title">
+      <div class="section-heading">
+        <div><h2 id="other-spaces-title">Check other<br/>spaces.</h2></div>
+      </div>
+      <div class="apartment-grid lead-4">
+        {otherUnits.map((other, index) => <ApartmentCard unit={other} lead={index < 4} />)}
+      </div>
+    </section>
+  )}
+</Layout>

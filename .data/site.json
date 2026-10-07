@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "kind": "accommodation-profile",
+  "site": {
+    "slug": "apartments-bassanese-studio",
+    "locale": "en",
+    "locales": [
+      "en"
+    ],
+    "preview": true
+  },
+  "design": {
+    "family": "studio",
+    "colors": {
+      "primary": "#244B3B",
+      "accent": "#2B6C82",
+      "background": "#FAFAF7",
+      "surface": "#EDF0E8",
+      "text": "#1D2520",
+      "muted": "#59615B"
+    },
+    "fonts": {
+      "heading": "IzbaManrope",
+      "body": "IzbaManrope"
+    },
+    "edges": "square",
+    "gallery": "editorial",
+    "hero": "split",
+    "units": "grid",
+    "amenities": "band",
+    "contact": "banner"
+  },
+  "sections": [
+    "intro",
+    "units",
+    "amenities",
+    "location",
+    "contact"
+  ],
+  "contact": {
+    "type": "booking"
+  },
+  "guestGuide": false,
+  "provenance": {
+    "sourceUrl": "https://www.booking.com/hotel/si/apartments-bassanese.en-gb.html",
+    "retrievedAt": "2026-10-06T09:06:32.340091+00:00",
+    "snapshotId": "8fd97e31282640eaba1f79827a24ac13",
+    "evidence": [
+      {
+        "field": "property.address",
+        "quote": "Koritenska 17a Bled, 4260 Bled, Slovenia"
+      },
+      {
+        "field": "property.description",
+        "quote": "Apartments Bassanese is located 400 metres from Lake Bled and features free WiFi access and a garden with barbecue facilities and a terrace for guests to relax on."
+      },
+      {
+        "field": "narrative.introText.distanceConflict",
+        "quote": "LakeBled Lake\n\n900 yd"
+      },
+      {
+        "field": "property.amenities.kitchen",
+        "quote": "as well as a kitchenette"
+      },
+      {
+        "field": "property.amenities.parking",
+        "quote": "Free private parking is possible on site (reservation is not needed)."
+      },
+      {
+        "field": "narrative.practical.arrive",
+        "quote": "From 14:00 to 20:00"
+      },
+      {
+        "field": "narrative.practical.arrivalNotice",
+        "quote": "You'll need to let the property know in advance what time you'll arrive."
+      },
+      {
+        "field": "narrative.practical.depart",
+        "quote": "From 08:00 to 10:00"
+      },
+      {
+        "field": "narrative.practical.deposit",
+        "quote": "A damage deposit of € 300 is required on arrival. This will be collected as a cash payment. You should be reimbursed on check-out. Your deposit will be refunded in full in cash, subject to an inspection of the property."
+      },
+      {
+        "field": "narrative.practical.children",
+        "quote": "Children of any age are welcome."
+      },
+      {
+        "field": "narrative.practical.extraBeds",
+        "quote": "Cots and extra beds are not available at this property."
+      },
+      {
+        "field": "narrative.practical.smoking",
+        "quote": "Smoking is not allowed."
+      },
+      {
+        "field": "narrative.practical.pets",
+        "quote": "Pets are not allowed."
+      },
+      {
+        "field": "narrative.practical.parties",
+        "quote": "Parties/events are not allowed"
+      },
+      {
+        "field": "narrative.practical.quiet",
+        "quote": "Guests must be quiet between 22:00 and 10:00."
+      },
+      {
+        "field": "narrative.practical.booking",
+        "quote": "Cancellation and prepayment policies vary according to accommodation type."
+      }
+    ],
+    "imageAssociations": "Explicit Booking room records; associations may overlap between room types.",
+    "approval": "private-preview-only",
+    "warnings": [
+      "Photo reuse rights and current facts require owner approval.",
+      "Room types are not a verified count of physical apartments."
+    ]
+  }
+}

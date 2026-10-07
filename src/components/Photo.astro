@@ -1,0 +1,17 @@
+---
+import { Image } from 'astro:assets';
+import { photoSource } from '../lib/images';
+import type { PropertyPhoto } from '../lib/property';
+
+interface Props {
+  photo: PropertyPhoto;
+  sizes: string;
+  /** Used when the photo has no alt text of its own. */
+  fallbackAlt?: string;
+  /** Above-the-fold photo: load immediately with high priority. */
+  eager?: boolean;
+}
+const { photo, sizes, fallbackAlt, eager = false } = Astro.props;
+const src = photoSource(photo.url);
+---
+<Image {src} widths={[480, 768, src.width]} sizes={sizes} alt={photo.alt ?? fallbackAlt ?? ''} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined} />

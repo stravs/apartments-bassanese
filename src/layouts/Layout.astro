@@ -1,0 +1,105 @@
+---
+import '../styles/global.css';
+import UnitLightbox from '../components/UnitLightbox.astro';
+import { pad, unitPath, type Property, type PropertyUnit } from '../lib/property';
+import { getSiteConfig } from '../lib/site';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string | undefined;
+  jsonLd?: Record<string, unknown> | undefined;
+  property: Property;
+  /** Set on a unit page: the lightbox then targets this unit only. */
+  unit?: PropertyUnit;
+}
+const { title, description, image, jsonLd, property, unit } = Astro.props;
+const wordmark = property.name.toLowerCase();
+const siteConfig = await getSiteConfig();
+const { colors } = siteConfig.design;
+const style = `--ink:${colors.text};--muted:${colors.muted};--paper:${colors.background};--surface:${colors.surface};--primary:${colors.primary};--accent:${colors.accent}`;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {siteConfig.site.preview && <meta name="robots" content="noindex,nofollow" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    {image && <meta property="og:image" content={image} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    {jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  </head>
+  <body>
+    <div class="page" style={style}>
+      <a class="skip" href="#main">Skip to content</a>
+      <header class="header wrap">
+        <a class="brand" href="/" aria-label={`${property.name} home`}>
+          <span>{wordmark}<span class="brand-dot">.</span></span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+        <nav id="site-nav" aria-label="Main navigation">
+          <div class="nav-drop">
+            <a href="/#apartments">The spaces</a>
+            <ul>
+              {property.units.map(item => <li><a href={unitPath(item.id)} aria-current={item.id === unit?.id ? 'page' : undefined}>{item.name}</a></li>)}
+            </ul>
+          </div>
+          <a href="/#place">Location</a>
+          <a href="/#arrival">Good to know</a>
+        </nav>
+      </header>
+      <script is:inline>
+        (() => {
+          const header = document.querySelector('.header');
+          const toggle = header.querySelector('.menu-toggle');
+          const setOpen = (open) => {
+            header.classList.toggle('open', open);
+            toggle.setAttribute('aria-expanded', String(open));
+            toggle.textContent = open ? 'Close' : 'Menu';
+          };
+          toggle.addEventListener('click', () => setOpen(!header.classList.contains('open')));
+          header.querySelector('nav').addEventListener('click', (event) => { if (event.target.closest('a')) setOpen(false); });
+          document.addEventListener('keydown', (event) => { if (event.key === 'Escape') setOpen(false); });
+        })();
+      </script>
+
+      <main id="main">
+        <slot />
+
+        <section class="practical wrap" id="arrival" aria-labelledby="arrival-title">
+          <div class="practical-heading">
+            <h2 id="arrival-title">The useful<br/>little things.</h2>
+          </div>
+          <div class="accordion">
+            {property.narrative.practical.map((item, index) => (
+              <details open={index === 0}>
+                <summary><span class="label">{pad(index + 1)}</span>{item.label}<span class="plus" aria-hidden="true"></span></summary>
+                <p>{item.value}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <slot name="after-practical" />
+      </main>
+
+      <footer class="footer wrap">
+        <div class="footer-top">
+          <a class="brand" href="/">{wordmark}<span class="brand-dot">.</span></a>
+          <p>{property.address}<br/>{property.city}, {property.country}</p>
+        </div>
+      </footer>
+      <UnitLightbox units={unit ? [unit] : property.units} />
+    </div>
+  </body>
+</html>

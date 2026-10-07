@@ -1,0 +1,674 @@
+{
+  "description": "Self-catering apartments in Bled with a garden, balcony and terrace options, free private parking and a kitchen of your own.",
+  "address": "Koritenska 17a, 4260",
+  "city": "Bled",
+  "country": "Slovenia",
+  "latitude": 46.3675625,
+  "longitude": 14.1195672,
+  "amenities": [
+    "Your own kitchen",
+    "Garden & terrace",
+    "Free private parking",
+    "Free Wi-Fi"
+  ],
+  "checkIn": "14:00–20:00",
+  "checkOut": "08:00–10:00",
+  "name": "Apartments Bassanese",
+  "units": [
+    {
+      "id": "booking-room-108688901",
+      "bookingRoomId": "108688901",
+      "name": "Apartment with Balcony",
+      "description": "This air-conditioned apartment comprises 1 living room, 1 separate bedroom and 1 bathroom with a shower. In the fully equipped kitchen, guests will find a stovetop, a refrigerator, kitchenware and an electric kettle. Featuring a balcony with garden views, this apartment also provides a seating area and a flat-screen TV with cable channels. The unit offers 1 bed.",
+      "highlights": [
+        "Air conditioning",
+        "Living room",
+        "Separate bedroom",
+        "Bathroom with shower",
+        "Equipped kitchen",
+        "Balcony",
+        "Garden view",
+        "Seating area",
+        "Flat-screen TV"
+      ],
+      "areaSquareMetres": 30,
+      "occupancyLabel": "2 adults, 1 child",
+      "occupancy": {
+        "maxPersons": 2,
+        "maxChildren": 1,
+        "maxGuests": 2
+      },
+      "rooms": [
+        {
+          "name": "Beds",
+          "beds": "1 large double bed"
+        }
+      ],
+      "amenities": [
+        "Kitchen",
+        "Heating",
+        "Hairdryer"
+      ],
+      "photos": [
+        {
+          "url": "/images/apartments-bassanese/430560368.webp",
+          "srcSet": "/images/apartments-bassanese/430560368-small.webp 600w, /images/apartments-bassanese/430560368.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "Warm wood, soft light · Apartment with Balcony"
+        },
+        {
+          "url": "/images/apartments-bassanese/521905476.webp",
+          "srcSet": "/images/apartments-bassanese/521905476-small.webp 450w, /images/apartments-bassanese/521905476.webp 576w",
+          "width": 576,
+          "height": 768,
+          "alt": "a white room with a table and a kitchen at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/363479716.webp",
+          "srcSet": "/images/apartments-bassanese/363479716-small.webp 600w, /images/apartments-bassanese/363479716.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "Tree-facing balcony · Apartment with Balcony"
+        },
+        {
+          "url": "/images/apartments-bassanese/363479788.webp",
+          "srcSet": "/images/apartments-bassanese/363479788-small.webp 600w, /images/apartments-bassanese/363479788.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "a bathroom with a shower and a sink and a toilet at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/430560413.webp",
+          "srcSet": "/images/apartments-bassanese/430560413-small.webp 600w, /images/apartments-bassanese/430560413.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/430560329.webp",
+          "srcSet": "/images/apartments-bassanese/430560329-small.webp 600w, /images/apartments-bassanese/430560329.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/463418395.webp",
+          "srcSet": "/images/apartments-bassanese/463418395-small.webp 450w, /images/apartments-bassanese/463418395.webp 576w",
+          "width": 576,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/426324080.webp",
+          "srcSet": "/images/apartments-bassanese/426324080-small.webp 450w, /images/apartments-bassanese/426324080.webp 576w",
+          "width": 576,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/426324030.webp",
+          "srcSet": "/images/apartments-bassanese/426324030-small.webp 450w, /images/apartments-bassanese/426324030.webp 576w",
+          "width": 576,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        }
+      ],
+      "bookingUrl": "https://www.booking.com/hotel/si/apartments-bassanese.en-gb.html"
+    },
+    {
+      "id": "booking-room-108688905",
+      "bookingRoomId": "108688905",
+      "name": "Apartment with Balcony (2 Adults)",
+      "description": "The air-conditioned apartment has 1 bedroom and 1 bathroom with a shower and a hairdryer. In the well-equipped kitchen, guests will find a stovetop, a refrigerator, kitchenware and an electric kettle. Boasting a balcony with garden views, this apartment also offers a seating area and a flat-screen TV with cable channels. The unit has 1 bed.",
+      "highlights": [
+        "Air conditioning",
+        "Bedroom",
+        "Bathroom with shower",
+        "Hairdryer",
+        "Equipped kitchen",
+        "Balcony",
+        "Garden view",
+        "Seating area",
+        "Flat-screen TV"
+      ],
+      "areaSquareMetres": 27,
+      "occupancyLabel": "2 adults, 1 child",
+      "occupancy": {
+        "maxPersons": 2,
+        "maxChildren": 1,
+        "maxGuests": 2
+      },
+      "rooms": [
+        {
+          "name": "Beds",
+          "beds": "1 large double bed"
+        }
+      ],
+      "amenities": [
+        "Kitchen",
+        "Heating",
+        "Hairdryer"
+      ],
+      "photos": [
+        {
+          "url": "/images/apartments-bassanese/195569994.webp",
+          "srcSet": "/images/apartments-bassanese/195569994-small.webp 512w, /images/apartments-bassanese/195569994.webp 512w",
+          "width": 512,
+          "height": 384,
+          "alt": "Balcony doors and dining area in the Apartment with Balcony (2 Adults)"
+        },
+        {
+          "url": "/images/apartments-bassanese/195569936.webp",
+          "srcSet": "/images/apartments-bassanese/195569936-small.webp 512w, /images/apartments-bassanese/195569936.webp 512w",
+          "width": 512,
+          "height": 384,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/195569852.webp",
+          "srcSet": "/images/apartments-bassanese/195569852-small.webp 512w, /images/apartments-bassanese/195569852.webp 512w",
+          "width": 512,
+          "height": 384,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/521907127.webp",
+          "srcSet": "/images/apartments-bassanese/521907127-small.webp 600w, /images/apartments-bassanese/521907127.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/195570679.webp",
+          "srcSet": "/images/apartments-bassanese/195570679-small.webp 512w, /images/apartments-bassanese/195570679.webp 512w",
+          "width": 512,
+          "height": 384,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/195569895.webp",
+          "srcSet": "/images/apartments-bassanese/195569895-small.webp 512w, /images/apartments-bassanese/195569895.webp 512w",
+          "width": 512,
+          "height": 384,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/195569780.webp",
+          "srcSet": "/images/apartments-bassanese/195569780-small.webp 512w, /images/apartments-bassanese/195569780.webp 512w",
+          "width": 512,
+          "height": 384,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/195569961.webp",
+          "srcSet": "/images/apartments-bassanese/195569961-small.webp 512w, /images/apartments-bassanese/195569961.webp 512w",
+          "width": 512,
+          "height": 384,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/195569830.webp",
+          "srcSet": "/images/apartments-bassanese/195569830-small.webp 512w, /images/apartments-bassanese/195569830.webp 512w",
+          "width": 512,
+          "height": 384,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/174115070.webp",
+          "srcSet": "/images/apartments-bassanese/174115070-small.webp 600w, /images/apartments-bassanese/174115070.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/174110661.webp",
+          "srcSet": "/images/apartments-bassanese/174110661-small.webp 600w, /images/apartments-bassanese/174110661.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/260654771.webp",
+          "srcSet": "/images/apartments-bassanese/260654771-small.webp 600w, /images/apartments-bassanese/260654771.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        }
+      ],
+      "bookingUrl": "https://www.booking.com/hotel/si/apartments-bassanese.en-gb.html"
+    },
+    {
+      "id": "booking-room-108688906",
+      "bookingRoomId": "108688906",
+      "name": "Apartment with Terrace",
+      "description": "The air-conditioned apartment features 1 bedroom and 1 bathroom with a shower and a hairdryer. Meals can be prepared in the well-fitted kitchen, which is fitted with a stovetop, a refrigerator, kitchenware and an electric kettle. Featuring a terrace with city views, this apartment also offers a seating area and a flat-screen TV with cable channels. The unit offers 1 bed.",
+      "highlights": [
+        "Air conditioning",
+        "Bedroom",
+        "Bathroom with shower",
+        "Hairdryer",
+        "Equipped kitchen",
+        "Terrace",
+        "City view",
+        "Seating area",
+        "Flat-screen TV"
+      ],
+      "areaSquareMetres": 30,
+      "occupancyLabel": "2 adults, 1 child",
+      "occupancy": {
+        "maxPersons": 2,
+        "maxChildren": 1,
+        "maxGuests": 2
+      },
+      "rooms": [
+        {
+          "name": "Beds",
+          "beds": "1 double bed"
+        }
+      ],
+      "amenities": [
+        "Kitchen",
+        "Heating",
+        "Hairdryer"
+      ],
+      "photos": [
+        {
+          "url": "/images/apartments-bassanese/463413760.webp",
+          "srcSet": "/images/apartments-bassanese/463413760-small.webp 450w, /images/apartments-bassanese/463413760.webp 576w",
+          "width": 576,
+          "height": 768,
+          "alt": "Bedroom and dining area in the Apartment with Terrace"
+        },
+        {
+          "url": "/images/apartments-bassanese/463413887.webp",
+          "srcSet": "/images/apartments-bassanese/463413887-small.webp 450w, /images/apartments-bassanese/463413887.webp 576w",
+          "width": 576,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/254252773.webp",
+          "srcSet": "/images/apartments-bassanese/254252773-small.webp 600w, /images/apartments-bassanese/254252773.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "a kitchen with a sink and a counter top at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/363479788.webp",
+          "srcSet": "/images/apartments-bassanese/363479788-small.webp 600w, /images/apartments-bassanese/363479788.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "a bathroom with a shower and a sink and a toilet at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/463414002.webp",
+          "srcSet": "/images/apartments-bassanese/463414002-small.webp 450w, /images/apartments-bassanese/463414002.webp 576w",
+          "width": 576,
+          "height": 768,
+          "alt": "a white living room with a table and a tv at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/521908674.webp",
+          "srcSet": "/images/apartments-bassanese/521908674-small.webp 450w, /images/apartments-bassanese/521908674.webp 576w",
+          "width": 576,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/521907768.webp",
+          "srcSet": "/images/apartments-bassanese/521907768-small.webp 450w, /images/apartments-bassanese/521907768.webp 576w",
+          "width": 576,
+          "height": 768,
+          "alt": "a living room with a tv on a white cabinet at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/463414311.webp",
+          "srcSet": "/images/apartments-bassanese/463414311-small.webp 450w, /images/apartments-bassanese/463414311.webp 576w",
+          "width": 576,
+          "height": 768,
+          "alt": "a room with a vase on a dresser with a window at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/521907732.webp",
+          "srcSet": "/images/apartments-bassanese/521907732-small.webp 600w, /images/apartments-bassanese/521907732.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/521907771.webp",
+          "srcSet": "/images/apartments-bassanese/521907771-small.webp 600w, /images/apartments-bassanese/521907771.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/521907734.webp",
+          "srcSet": "/images/apartments-bassanese/521907734-small.webp 600w, /images/apartments-bassanese/521907734.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        }
+      ],
+      "bookingUrl": "https://www.booking.com/hotel/si/apartments-bassanese.en-gb.html"
+    },
+    {
+      "id": "booking-room-108688908",
+      "bookingRoomId": "108688908",
+      "name": "Studio - Ground Floor",
+      "description": "This apartment consists of a kitchen, a seating area, 1 separate bedroom and 1 bathroom with a shower and a hairdryer. The kitchen is equipped with a stovetop, a refrigerator and kitchenware. This apartment features a wardrobe, an electric kettle, a flat-screen TV with cable channels and an outdoor dining area. The unit offers 1 bed.",
+      "highlights": [
+        "Separate bedroom",
+        "Bathroom with shower",
+        "Hairdryer",
+        "Equipped kitchen",
+        "Seating area",
+        "Wardrobe",
+        "Flat-screen TV",
+        "Outdoor dining area"
+      ],
+      "areaSquareMetres": 27,
+      "occupancyLabel": "2 adults, 1 child",
+      "occupancy": {
+        "maxPersons": 2,
+        "maxChildren": 1,
+        "maxGuests": 2
+      },
+      "rooms": [
+        {
+          "name": "Beds",
+          "beds": "1 double bed"
+        }
+      ],
+      "amenities": [
+        "Kitchen",
+        "Heating",
+        "Hairdryer"
+      ],
+      "photos": [
+        {
+          "url": "/images/apartments-bassanese/361199187.webp",
+          "srcSet": "/images/apartments-bassanese/361199187-small.webp 600w, /images/apartments-bassanese/361199187.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "a white bedroom with a bed and a kitchen at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/361200351.webp",
+          "srcSet": "/images/apartments-bassanese/361200351-small.webp 600w, /images/apartments-bassanese/361200351.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "a white bedroom with a bed with a blanket at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/361199220.webp",
+          "srcSet": "/images/apartments-bassanese/361199220-small.webp 600w, /images/apartments-bassanese/361199220.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "a kitchen with white cabinets and a microwave at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/361286164.webp",
+          "srcSet": "/images/apartments-bassanese/361286164-small.webp 600w, /images/apartments-bassanese/361286164.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "a room with a table and chairs and flowers at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/361199218.webp",
+          "srcSet": "/images/apartments-bassanese/361199218-small.webp 600w, /images/apartments-bassanese/361199218.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/361286334.webp",
+          "srcSet": "/images/apartments-bassanese/361286334-small.webp 600w, /images/apartments-bassanese/361286334.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/361199219.webp",
+          "srcSet": "/images/apartments-bassanese/361199219-small.webp 600w, /images/apartments-bassanese/361199219.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/459929863.webp",
+          "srcSet": "/images/apartments-bassanese/459929863-small.webp 600w, /images/apartments-bassanese/459929863.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "a white cabinet with a flat screen tv on a wall at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/361199863.webp",
+          "srcSet": "/images/apartments-bassanese/361199863-small.webp 600w, /images/apartments-bassanese/361199863.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "a kitchen with white cabinets and a black microwave at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/361200637.webp",
+          "srcSet": "/images/apartments-bassanese/361200637-small.webp 600w, /images/apartments-bassanese/361200637.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "a kitchen with a sink and a microwave at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/361283958.webp",
+          "srcSet": "/images/apartments-bassanese/361283958-small.webp 600w, /images/apartments-bassanese/361283958.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "a small room with a wooden table and flowers at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/191835050.webp",
+          "srcSet": "/images/apartments-bassanese/191835050-small.webp 512w, /images/apartments-bassanese/191835050.webp 512w",
+          "width": 512,
+          "height": 341,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/361192377.webp",
+          "srcSet": "/images/apartments-bassanese/361192377-small.webp 450w, /images/apartments-bassanese/361192377.webp 576w",
+          "width": 576,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/361286244.webp",
+          "srcSet": "/images/apartments-bassanese/361286244-small.webp 450w, /images/apartments-bassanese/361286244.webp 576w",
+          "width": 576,
+          "height": 768,
+          "alt": "a bathroom with a shower and a toilet and a sink at Apartments Bassanese in Bled"
+        }
+      ],
+      "bookingUrl": "https://www.booking.com/hotel/si/apartments-bassanese.en-gb.html"
+    },
+    {
+      "id": "booking-room-108688909",
+      "bookingRoomId": "108688909",
+      "name": "Apartment with Garden View",
+      "description": "This apartment features 1 living room, 1 separate bedroom and 1 bathroom with a shower and a hairdryer. Meals can be prepared in the well-fitted kitchen, which has a stovetop, a refrigerator, kitchenware and an electric kettle. Boasting a terrace with garden views, this apartment also features a seating area and a flat-screen TV with cable channels. The unit has 1 bed.",
+      "highlights": [
+        "Living room",
+        "Separate bedroom",
+        "Bathroom with shower",
+        "Hairdryer",
+        "Equipped kitchen",
+        "Terrace",
+        "Garden view",
+        "Seating area",
+        "Flat-screen TV"
+      ],
+      "areaSquareMetres": 30,
+      "occupancyLabel": "2 adults, 1 child",
+      "occupancy": {
+        "maxPersons": 2,
+        "maxChildren": 1,
+        "maxGuests": 2
+      },
+      "rooms": [
+        {
+          "name": "Beds",
+          "beds": "1 large double bed"
+        }
+      ],
+      "amenities": [
+        "Kitchen",
+        "Heating",
+        "Hairdryer"
+      ],
+      "photos": [
+        {
+          "url": "/images/apartments-bassanese/521909275.webp",
+          "srcSet": "/images/apartments-bassanese/521909275-small.webp 450w, /images/apartments-bassanese/521909275.webp 576w",
+          "width": 576,
+          "height": 768,
+          "alt": "Living area in the Apartment with Garden View"
+        },
+        {
+          "url": "/images/apartments-bassanese/521909276.webp",
+          "srcSet": "/images/apartments-bassanese/521909276-small.webp 450w, /images/apartments-bassanese/521909276.webp 576w",
+          "width": 576,
+          "height": 768,
+          "alt": "a living room with a couch and a table at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/463417928.webp",
+          "srcSet": "/images/apartments-bassanese/463417928-small.webp 450w, /images/apartments-bassanese/463417928.webp 576w",
+          "width": 576,
+          "height": 768,
+          "alt": "a living room with a couch and a table at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/463418015.webp",
+          "srcSet": "/images/apartments-bassanese/463418015-small.webp 450w, /images/apartments-bassanese/463418015.webp 576w",
+          "width": 576,
+          "height": 768,
+          "alt": "Garden-side seating · Apartment with Garden View"
+        },
+        {
+          "url": "/images/apartments-bassanese/521909278.webp",
+          "srcSet": "/images/apartments-bassanese/521909278-small.webp 450w, /images/apartments-bassanese/521909278.webp 576w",
+          "width": 576,
+          "height": 768,
+          "alt": "a living room with a flat screen tv on a white wall at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/148714449.webp",
+          "srcSet": "/images/apartments-bassanese/148714449-small.webp 600w, /images/apartments-bassanese/148714449.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/148705874.webp",
+          "srcSet": "/images/apartments-bassanese/148705874-small.webp 600w, /images/apartments-bassanese/148705874.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/148705877.webp",
+          "srcSet": "/images/apartments-bassanese/148705877-small.webp 600w, /images/apartments-bassanese/148705877.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "a small kitchen with a sink and a door at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/148714451.webp",
+          "srcSet": "/images/apartments-bassanese/148714451-small.webp 600w, /images/apartments-bassanese/148714451.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "two pots with flowers in them sitting on a patio at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/148712476.webp",
+          "srcSet": "/images/apartments-bassanese/148712476-small.webp 600w, /images/apartments-bassanese/148712476.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "three flower pots with flowers in them on a patio at Apartments Bassanese in Bled"
+        },
+        {
+          "url": "/images/apartments-bassanese/148705875.webp",
+          "srcSet": "/images/apartments-bassanese/148705875-small.webp 600w, /images/apartments-bassanese/148705875.webp 1024w",
+          "width": 1024,
+          "height": 768,
+          "alt": "Gallery image of Apartments Bassanese in Bled"
+        }
+      ],
+      "bookingUrl": "https://www.booking.com/hotel/si/apartments-bassanese.en-gb.html"
+    }
+  ],
+  "photos": [
+    {
+      "url": "/images/apartments-bassanese/430560329.webp",
+      "srcSet": "/images/apartments-bassanese/430560329-small.webp 600w, /images/apartments-bassanese/430560329.webp 1024w",
+      "width": 1024,
+      "height": 768,
+      "alt": "Bedroom under a pale wood ceiling"
+    },
+    {
+      "url": "/images/apartments-bassanese/463418015.webp",
+      "srcSet": "/images/apartments-bassanese/463418015-small.webp 450w, /images/apartments-bassanese/463418015.webp 576w",
+      "width": 576,
+      "height": 768,
+      "alt": "Garden-side seating · Apartment with Garden View"
+    },
+    {
+      "url": "/images/apartments-bassanese/363479716.webp",
+      "srcSet": "/images/apartments-bassanese/363479716-small.webp 600w, /images/apartments-bassanese/363479716.webp 1024w",
+      "width": 1024,
+      "height": 768,
+      "alt": "Tree-facing balcony · Apartment with Balcony"
+    }
+  ],
+  "bookingUrl": "https://www.booking.com/hotel/si/apartments-bassanese.en-gb.html",
+  "narrative": {
+    "heroTitle": "Welcome.",
+    "heroText": "A kitchen of your own. A little green outside. A place to switch off in Bled.",
+    "introTitle": "A base for Bled.\nA space for you.",
+    "introText": "Settle into your own rhythm. Make breakfast, leave the car in the private parking area and head out to explore.",
+    "practical": [
+      {
+        "label": "Arrive",
+        "value": "Check-in 14:00–20:00. Tell the property your expected arrival time in advance."
+      },
+      {
+        "label": "Depart",
+        "value": "Check-out 08:00–10:00."
+      },
+      {
+        "label": "Park",
+        "value": "Free private parking on site. No reservation needed."
+      },
+      {
+        "label": "Around Bled",
+        "value": "The property is at Koritenska 17a in Bled. The listing description says 400 metres to Lake Bled; its surroundings table gives 900 yards. Check the actual route rather than relying on a single distance."
+      },
+      {
+        "label": "Deposit",
+        "value": "The listing requires a €300 cash damage deposit on arrival, refundable in cash at check-out subject to a property inspection. Confirm current terms when booking."
+      },
+      {
+        "label": "Children",
+        "value": "Children of any age are welcome. Cots and extra beds are not available. Enter children's ages on Booking.com to check the right occupancy and price."
+      },
+      {
+        "label": "Keep it peaceful",
+        "value": "No smoking, pets or parties. Quiet hours 22:00–10:00."
+      },
+      {
+        "label": "Your booking",
+        "value": "Prices, availability, cancellation and prepayment depend on dates and apartment option. Check the full conditions on Booking.com."
+      }
+    ],
+    "spacesText": "Balcony mornings. Terrace afternoons.\nA room that feels like yours.\nExplore the options below.",
+    "settingTitle": "Location",
+    "settingText": "A quiet spot, an easy walk from Lake Bled. Restaurants, bars, a bakery and supermarkets are close by on foot. Free parking on site, so the car can stay put."
+  }
+}
