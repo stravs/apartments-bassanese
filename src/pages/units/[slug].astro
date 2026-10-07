@@ -32,7 +32,7 @@ const otherUnits = property.units.filter(other => other.id !== unit.id);
 
   <div class="unit-side">
     <h1 id="unit-title">{unit.name}</h1>
-    <a class="button unit-book" href={booking} target="_blank" rel="noopener noreferrer">Check availability <span aria-hidden="true">↗</span></a>
+    <a class="button unit-book" href={booking} target="_blank" rel="noopener noreferrer">Check availability</a>
     <ul class="unit-facts">
       {unit.areaSquareMetres && <li>{unit.areaSquareMetres} m²</li>}
       {unit.occupancyLabel && <li>{unit.occupancyLabel}</li>}
