@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import UnitLightbox from '../components/UnitLightbox.astro';
+import { Font } from 'astro:assets';
 import { bookUrl, pad, unitPath, type Property, type PropertyUnit } from '../lib/property';
 import { getSiteConfig } from '../lib/site';
 import { alternatePath, localePath, strings, toLocale } from '../lib/i18n';
@@ -13,8 +14,10 @@ interface Props {
   property: Property;
   /** Set on a unit page: the lightbox then targets this unit only. */
   unit?: PropertyUnit;
+  /** Pages that must never be indexed (404): no canonical, no language alternates. */
+  noindex?: boolean;
 }
-const { title, description, image, jsonLd, property, unit } = Astro.props;
+const { title, description, image, jsonLd, property, unit, noindex = false } = Astro.props;
 const wordmark = property.name.toLowerCase();
 const siteConfig = await getSiteConfig();
 const { colors } = siteConfig.design;
@@ -23,27 +26,39 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const locale = toLocale(Astro.currentLocale);
 const t = strings(locale);
 const other = locale === 'en' ? 'sl' : 'en';
-const otherPath = alternatePath(Astro.url.pathname, other);
+const otherPath = noindex ? localePath(other, '/') : alternatePath(Astro.url.pathname, other);
 const home = localePath(locale, '/');
+const absolute = (path: string) => new URL(path, Astro.site).href;
 ---
 <!doctype html>
 <html lang={t.htmlLang}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    {/* Slovenian headlines use č/š/ž, so those pages preload both files (latin + latin-ext). The Fonts API can't
+        preload just one of them, and English pages never use latin-ext, so they skip preloading (no unused preload). */}
+    <Font cssVariable="--font-manrope" preload={locale === 'sl'} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content={colors.background} />
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalUrl} />
-    {siteConfig.site.preview && <meta name="robots" content="noindex,nofollow" />}
+    {!noindex && <link rel="canonical" href={canonicalUrl} />}
+    {(siteConfig.site.preview || noindex) && <meta name="robots" content="noindex,nofollow" />}
     <meta property="og:type" content="website" />
     <meta property="og:locale" content={t.ogLocale} />
-    <link rel="alternate" hreflang="en" href={new URL(alternatePath(Astro.url.pathname, 'en'), Astro.site).href} />
-    <link rel="alternate" hreflang="sl" href={new URL(alternatePath(Astro.url.pathname, 'sl'), Astro.site).href} />
+    {!noindex && <>
+      <link rel="alternate" hreflang="en" href={absolute(alternatePath(Astro.url.pathname, 'en'))} />
+      <link rel="alternate" hreflang="sl" href={absolute(alternatePath(Astro.url.pathname, 'sl'))} />
+      <link rel="alternate" hreflang="x-default" href={absolute(alternatePath(Astro.url.pathname, 'en'))} />
+    </>}
+    <meta property="og:site_name" content={property.name} />
+    <meta property="og:locale:alternate" content={strings(other).ogLocale} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalUrl} />
-    {image && <meta property="og:image" content={image} />}
+    {!noindex && <meta property="og:url" content={canonicalUrl} />}
+    {image && <meta property="og:image" content={absolute(image)} />}
     <meta name="twitter:card" content="summary_large_image" />
     {jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>

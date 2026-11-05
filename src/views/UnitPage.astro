@@ -2,26 +2,40 @@
 import Layout from '../layouts/Layout.astro';
 import Photo from '../components/Photo.astro';
 import ApartmentCard from '../components/ApartmentCard.astro';
-import { bookUrl, type Property, type PropertyUnit } from '../lib/property';
+import { bookUrl, summary, unitFeatures, unitPath, type Property, type PropertyUnit } from '../lib/property';
+import { accommodation } from '../lib/structured-data';
 import { photoUrl } from '../lib/images';
-import { strings, toLocale } from '../lib/i18n';
+import { localePath, strings, toLocale } from '../lib/i18n';
 
 interface Props { property: Property; unit: PropertyUnit }
 const { property, unit } = Astro.props;
-const description = (unit.description ?? `${unit.name} — ${property.name}`).replace(/\s+/g, ' ').slice(0, 158);
+const description = summary(unit.description ?? `${unit.name} — ${property.name}`);
 const [cover, ...morePhotos] = unit.photos;
-// Key facts lead; highlights follow, then amenities not already covered by a highlight ("Kitchen" vs "Equipped kitchen").
+// Key facts lead; features (highlights, then other amenities) follow below the Book button.
 const keyFacts = [unit.areaSquareMetres && `${unit.areaSquareMetres} m²`, unit.occupancyLabel, ...unit.rooms.map(room => room.beds)].filter(Boolean);
-const highlights = unit.highlights ?? [];
-const features = [...new Set([...highlights, ...unit.amenities.filter(item => !highlights.some(h => h.toLowerCase().includes(item.toLowerCase())))])];
+const features = unitFeatures(unit);
 // Gallery shows photos in batches; "Load more" reveals the next batch.
 const batch = 6;
 const locale = toLocale(Astro.currentLocale);
 const t = strings(locale);
 const booking = bookUrl(property, unit, locale);
 const otherUnits = property.units.filter(other => other.id !== unit.id);
+const absolute = (path: string) => new URL(path, Astro.site).href;
+const pageUrl = absolute(localePath(locale, unitPath(unit.id)));
+const homeUrl = absolute(localePath(locale, '/'));
+const images = await Promise.all(unit.photos.map(async photo => absolute(await photoUrl(photo.url))));
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { ...accommodation(unit, pageUrl, images), containedInPlace: { '@type': 'LodgingBusiness', '@id': `${homeUrl}#lodging`, name: property.name, url: homeUrl } },
+    { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: property.name, item: homeUrl },
+      { '@type': 'ListItem', position: 2, name: unit.name, item: pageUrl },
+    ] },
+  ],
+};
 ---
-<Layout title={`${unit.name} | ${property.name}`} {description} image={cover && await photoUrl(cover.url)} {property} {unit}>
+<Layout title={`${unit.name} | ${property.name}`} {description} image={cover && await photoUrl(cover.url)} {jsonLd} {property} {unit}>
   <div class="sticky-book" inert>
     <div class="wrap">
       <p class="sticky-book-name">{unit.name}</p>
@@ -59,7 +73,7 @@ const otherUnits = property.units.filter(other => other.id !== unit.id);
   {cover && (
     <figure class="unit-cover">
       <button type="button" data-unit-index="0" data-unit-photo-index="0" aria-label={t.viewPhotos(unit.name)}>
-        <Photo photo={cover} sizes="(max-width: 700px) 92vw, 90vw" fallbackAlt={unit.name} eager />
+        <Photo photo={cover} sizes="(max-width: 800px) 92vw, 66vw" fallbackAlt={unit.name} eager />
       </button>
     </figure>
   )}

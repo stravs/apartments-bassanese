@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getProperty } from '../lib/property';
+import { strings } from '../lib/i18n';
+
+// One 404 for the whole site (Cloudflare serves it for any missing path), so it is in English.
+const t = strings('en');
+const property = await getProperty('en');
+---
+<Layout title={`${t.notFoundTitle} | ${property.name}`} description={t.notFoundText} {property} noindex>
+  <section class="not-found wrap">
+    <h1>{t.notFoundTitle}</h1>
+    <p>{t.notFoundText}</p>
+    <a class="button" href="/#apartments">{t.seeApartments}</a>
+  </section>
+</Layout>

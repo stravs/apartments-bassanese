@@ -1,8 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ApartmentCard from '../components/ApartmentCard.astro';
-import { Image } from 'astro:assets';
-import { bookUrl, getProperty, mapEmbedUrl, mapsUrl } from '../lib/property';
+import { Image, Picture } from 'astro:assets';
+import { bookUrl, getProperty, mapEmbedUrl, mapsUrl, summary, unitPath } from '../lib/property';
+import { accommodation, lodgingBusiness } from '../lib/structured-data';
 import { localePath, strings, toLocale } from '../lib/i18n';
 // Unsplash License photo; source in src/assets/images/stock/SOURCES.md.
 import heroImage from '../assets/images/stock/lake-bled-island.jpg';
@@ -32,24 +33,23 @@ const amenityIcons = [
 ];
 
 const location = [property.city, property.country].filter(Boolean).join(', ');
-const description = `${property.name}${location ? ` — ${location}` : ''}. ${property.description}`.replace(/\s+/g, ' ').trim().slice(0, 158);
-const unitImages = await Promise.all(property.units.map((unit) => Promise.all(unit.photos.map((photo) => photoUrl(photo.url)))));
+const description = summary(`${property.name}${location ? ` — ${location}` : ''}. ${property.description}`);
+const homeUrl = new URL(localePath(locale, '/'), Astro.site).href;
 const propertyImages = await Promise.all(property.photos.map((photo) => photoUrl(photo.url)));
-const jsonLd = {
-  '@context': 'https://schema.org', '@type': 'LodgingBusiness', name: property.name,
-  description: property.description, url: new URL(localePath(locale, '/'), Astro.site).href, image: [...propertyImages, ...unitImages.flat()],
-  address: { '@type': 'PostalAddress', streetAddress: property.address, addressLocality: property.city, addressCountry: property.country },
-  geo: property.latitude !== undefined && property.longitude !== undefined ? { '@type': 'GeoCoordinates', latitude: property.latitude, longitude: property.longitude } : undefined,
-  aggregateRating: property.rating && property.reviewCount ? { '@type': 'AggregateRating', ratingValue: property.rating, reviewCount: property.reviewCount, bestRating: 10 } : undefined,
-  sameAs: property.bookingUrl, slogan: [property.address, property.city, property.country].filter(Boolean).join(', '),
-  containsPlace: property.units.map((unit, index) => ({ '@type': 'Accommodation', name: unit.name, description: unit.description, image: unitImages[index], occupancy: unit.maxGuests ? { '@type': 'QuantitativeValue', maxValue: unit.maxGuests } : undefined, floorSize: unit.areaSquareMetres ? { '@type': 'QuantitativeValue', value: unit.areaSquareMetres, unitCode: 'MTK' } : undefined })),
-};
+// Home lists each apartment with its cover only; the apartment's own page carries all its photos.
+const units = await Promise.all(property.units.map(async (unit) => accommodation(
+  unit,
+  new URL(localePath(locale, unitPath(unit.id)), Astro.site).href,
+  unit.photos[0] ? [new URL(await photoUrl(unit.photos[0].url), Astro.site).href] : [],
+)));
+const jsonLd = { '@context': 'https://schema.org', ...lodgingBusiness(property, locale, homeUrl, propertyImages.map(src => new URL(src, Astro.site).href), units) };
 ---
 <Layout title={`${property.name} | ${property.city ?? t.accommodation}`} {description} image={propertyImages[0]} {jsonLd} {property}>
   <div class="fold">
   <section class="hero" aria-labelledby="hero-title">
-    {/* Phones show the photo zoomed to ~2× the screen height (see .hero > img), so ask for a matching width. */}
-    <Image src={heroImage} widths={[768, 1280, 1920, 2560, 3200]} sizes="(max-width: 600px) 200vh, max(100vw, 120vh)" alt={t.heroAlt} loading="eager" fetchpriority="high" />
+    {/* LCP image: AVIF first (about half the bytes of WebP). Phones show a zoomed crop (see .hero-photo img);
+        sizes asks for ~one screen height so a 3× phone gets the 2560px file, not the 3200px one. */}
+    <Picture src={heroImage} formats={['avif']} fallbackFormat="webp" widths={[768, 1280, 1920, 2560, 3200]} sizes="(max-width: 600px) 100vh, max(100vw, 120vh)" alt={t.heroAlt} priority pictureAttributes={{ class: 'hero-photo' }} />
     <div class="hero-content wrap">
       <div>
         <h1 id="hero-title">{story.heroTitle}</h1>
@@ -132,7 +132,20 @@ const jsonLd = {
         {address && <address><a href={mapsUrl(property)} target="_blank" rel="noopener noreferrer">{address}</a></address>}
         <div class="setting-photo"><Image src={exteriorImage} widths={[480, 768, exteriorImage.width]} sizes="(max-width: 700px) 116vw, 57vw" alt={t.exteriorAlt} loading="lazy" /></div>
       </div>
-      <iframe class="setting-map" src={mapSrc} title={t.mapTitle(property.name)} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      <iframe class="setting-map" data-src={mapSrc} title={t.mapTitle(property.name)} referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
     </div>
   </section>
+  <script>
+    // Google Maps pulls ~15 requests; the browser's own lazy loading starts them with the first screen on desktop.
+    // Load the map only when it is about to scroll into view.
+    const map = document.querySelector<HTMLIFrameElement>('.setting-map');
+    if (map?.dataset.src) {
+      const observer = new IntersectionObserver(([entry]) => {
+        if (!entry?.isIntersecting) return;
+        map.src = map.dataset.src ?? '';
+        observer.disconnect();
+      }, { rootMargin: '300px 0px' });
+      observer.observe(map);
+    }
+  </script>
 </Layout>

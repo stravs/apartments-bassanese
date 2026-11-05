@@ -114,8 +114,21 @@ export function unitSlug(id: string): string {
     ? id : `encoded-${Array.from(new TextEncoder().encode(id), byte => byte.toString(16).padStart(2, '0')).join('')}`;
 }
 
+/** Meta description: whitespace collapsed, cut at a word boundary to fit search snippets. */
+export function summary(text: string, max = 158): string {
+  const clean = text.replace(/\s+/g, ' ').trim();
+  return clean.length <= max ? clean : `${clean.slice(0, max - 1).replace(/\s+\S*$/, '')}…`;
+}
+
+/** Highlights first, then amenities not already covered by a highlight ("Kitchen" vs "Equipped kitchen"). */
+export function unitFeatures(unit: PropertyUnit): string[] {
+  const highlights = unit.highlights ?? [];
+  return [...new Set([...highlights, ...unit.amenities.filter(item => !highlights.some(h => h.toLowerCase().includes(item.toLowerCase())))])];
+}
+
+/** Ends with a slash, like the built page (units/<slug>/index.html), so links don't hit a redirect. */
 export function unitPath(id: string): string {
-  return `/units/${unitSlug(id)}`;
+  return `/units/${unitSlug(id)}/`;
 }
 
 /** Booking.com links open in the page language (…/apartments-bassanese.sl.html). */
