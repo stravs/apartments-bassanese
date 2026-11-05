@@ -33,17 +33,25 @@ const otherUnits = property.units.filter(other => other.id !== unit.id);
     </div>
   </div>
   <script>
-    // Show the sticky booking bar once the main Book now button has scrolled above the screen.
+    // Show the sticky booking bar once the main Book now button has scrolled above the screen,
+    // and hide it again once the other-apartments section reaches the top of the screen.
     const bar = document.querySelector<HTMLElement>('.sticky-book');
     const book = document.querySelector('.unit-book');
-    if (bar && book) {
-      new IntersectionObserver((entries) => {
-        const entry = entries[0];
-        if (!entry) return;
-        const show = !entry.isIntersecting && entry.boundingClientRect.top < 0;
-        bar.classList.toggle('show', show);
-        bar.inert = !show;
-      }).observe(book);
+    const other = document.querySelector('#other-apartments');
+    let pastBook = false;
+    let atOther = false;
+    const update = () => {
+      const show = pastBook && !atOther;
+      bar?.classList.toggle('show', show);
+      if (bar) bar.inert = !show;
+    };
+    const watch = (target: Element | null, onChange: (entry: IntersectionObserverEntry) => void, rootMargin = '0px') => {
+      if (target) new IntersectionObserver(([entry]) => { if (entry) { onChange(entry); update(); } }, { rootMargin }).observe(target);
+    };
+    if (bar) {
+      watch(book, (entry) => { pastBook = !entry.isIntersecting && entry.boundingClientRect.top < 0; });
+      // Root is the top tenth of the screen: the bar hides once the section reaches the top, not as it peeks in below.
+      watch(other, (entry) => { atOther = entry.isIntersecting || entry.boundingClientRect.top < 0; }, '0px 0px -90% 0px');
     }
   </script>
   <div class="unit-fold">
@@ -91,7 +99,7 @@ const otherUnits = property.units.filter(other => other.id !== unit.id);
   </script>
 
   {otherUnits.length > 0 && (
-    <section class="spaces wrap" slot="after-practical" aria-labelledby="other-spaces-title">
+    <section class="spaces wrap" id="other-apartments" slot="after-practical" aria-labelledby="other-spaces-title">
       <div class="section-heading">
         <div><h2 id="other-spaces-title">{t.otherTitle[0]}<br/>{t.otherTitle[1]}</h2></div>
       </div>

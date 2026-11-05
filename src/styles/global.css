@@ -206,8 +206,8 @@ button { font: inherit; }
 .detail-gallery img { width: 100%; height: 100%; object-fit: cover; }
 
 @media (min-width: 801px) {
-  .apartment-grid.lead-2 > :nth-last-child(-n+2), .apartment-grid.lead-4 > :nth-last-child(-n+4) { grid-column: span 3; }
-  .apartment-grid.lead-2 > :nth-last-child(-n+2) .card-image, .apartment-grid.lead-4 > :nth-last-child(-n+4) .card-image { aspect-ratio: 3 / 2; }
+  .apartment-grid.lead-2 > :nth-last-of-type(-n+2), .apartment-grid.lead-4 > :nth-last-of-type(-n+4) { grid-column: span 3; }
+  .apartment-grid.lead-2 > :nth-last-of-type(-n+2) .card-image, .apartment-grid.lead-4 > :nth-last-of-type(-n+4) .card-image { aspect-ratio: 3 / 2; }
 }
 @media (max-width: 1100px) {
   .wrap { width: calc(100% - 64px); }
