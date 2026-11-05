@@ -58,11 +58,15 @@ export type Property = {
   longitude?: number;
   rating?: number;
   reviewCount?: number;
+  /** Reviewed Google rating (out of 5), shown in the hero. Not added to structured data: Google ignores self-served ratings. */
+  googleRating?: { value: number; count: number; url: string };
   photos: PropertyPhoto[];
   amenities: string[];
   units: PropertyUnit[];
   checkIn?: string;
   checkOut?: string;
+  /** Contact email shown in the footer. */
+  email?: string;
   bookingUrl: string;
   /** Owner's own booking page (Snapguest). Book buttons use it when set. */
   directBookingUrl?: string;

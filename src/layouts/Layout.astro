@@ -104,10 +104,17 @@ const home = localePath(locale, '/');
         <slot name="after-practical" />
       </main>
 
+      <section class="cta" aria-labelledby="cta-title">
+        <div class="wrap cta-inner">
+          <h2 id="cta-title">{t.ctaTitle[0]}<br/>{t.ctaTitle[1]}</h2>
+          <a class="button" href={bookUrl(property, unit, locale)} target="_blank" rel="noopener noreferrer">{t.bookNow}</a>
+        </div>
+      </section>
+
       <footer class="footer wrap">
         <div class="footer-top">
-          <a class="brand" href={home}>{wordmark}<span class="brand-dot">.</span></a>
-          <p>{property.address}<br/>{property.city}, {property.country}</p>
+          <div class="brand">{wordmark}<span class="brand-dot">.</span></div>
+          <p>{property.address}<br/>{property.city}, {property.country}{property.email && <><br/><a href={`mailto:${property.email}`}>{property.email}</a></>}</p>
         </div>
       </footer>
       <UnitLightbox units={unit ? [unit] : property.units} {locale} />

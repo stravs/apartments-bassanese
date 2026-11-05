@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Photo from '../components/Photo.astro';
 import ApartmentCard from '../components/ApartmentCard.astro';
-import { bookUrl, pad, type Property, type PropertyUnit } from '../lib/property';
+import { bookUrl, type Property, type PropertyUnit } from '../lib/property';
 import { photoUrl } from '../lib/images';
 import { strings, toLocale } from '../lib/i18n';
 
@@ -10,8 +10,12 @@ interface Props { property: Property; unit: PropertyUnit }
 const { property, unit } = Astro.props;
 const description = (unit.description ?? `${unit.name} — ${property.name}`).replace(/\s+/g, ' ').slice(0, 158);
 const [cover, ...morePhotos] = unit.photos;
-// Highlights first, then amenities not already listed.
-const facts = [...new Set([...(unit.highlights ?? []), ...unit.amenities])];
+// Key facts lead; highlights follow, then amenities not already covered by a highlight ("Kitchen" vs "Equipped kitchen").
+const keyFacts = [unit.areaSquareMetres && `${unit.areaSquareMetres} m²`, unit.occupancyLabel, ...unit.rooms.map(room => room.beds)].filter(Boolean);
+const highlights = unit.highlights ?? [];
+const features = [...new Set([...highlights, ...unit.amenities.filter(item => !highlights.some(h => h.toLowerCase().includes(item.toLowerCase())))])];
+// Gallery shows photos in batches; "Load more" reveals the next batch.
+const batch = 6;
 const locale = toLocale(Astro.currentLocale);
 const t = strings(locale);
 const booking = bookUrl(property, unit, locale);
@@ -55,24 +59,37 @@ const otherUnits = property.units.filter(other => other.id !== unit.id);
 
   <div class="unit-side">
     <h1 id="unit-title">{unit.name}</h1>
+    {unit.setting && <p class="unit-setting">{unit.setting}</p>}
+    {keyFacts.length > 0 && <ul class="unit-key">{keyFacts.map(fact => <li>{fact}</li>)}</ul>}
     <a class="button unit-book" href={booking} target="_blank" rel="noopener noreferrer">{t.bookNow}</a>
-    <ul class="unit-facts">
-      {[unit.areaSquareMetres && `${unit.areaSquareMetres} m²`, unit.occupancyLabel, ...unit.rooms.map(room => room.beds), ...facts].filter(Boolean).map((fact, index) => <li style={`--i: ${index}`}>{fact}</li>)}
-    </ul>
+    {features.length > 0 && <ul class="unit-features">{features.map(fact => <li>{fact}</li>)}</ul>}
   </div>
   </div>
   </div>
 
-  <section class="detail-gallery wrap" aria-label={t.morePhotos(unit.name)}>
-      {morePhotos.map((photo, index) => (
-        <figure>
-          <button type="button" data-unit-index="0" data-unit-photo-index={index + 1} aria-label={t.viewPhoto(index + 2, unit.name)}>
-            <Photo {photo} sizes="(max-width: 700px) 92vw, 44vw" fallbackAlt={unit.name} />
+  {morePhotos.length > 0 && (
+    <section class="detail-gallery wrap" aria-label={t.morePhotos(unit.name)}>
+      <div class="detail-grid">
+        {morePhotos.map((photo, index) => (
+          <button type="button" data-unit-index="0" data-unit-photo-index={index + 1} aria-label={t.viewPhoto(index + 2, unit.name)} hidden={index >= batch}>
+            <Photo {photo} sizes="(max-width: 600px) 46vw, 30vw" fallbackAlt={unit.name} />
           </button>
-          <figcaption><span>{pad(index + 2)} / {pad(unit.photos.length)}</span></figcaption>
-        </figure>
-      ))}
-  </section>
+        ))}
+      </div>
+      {morePhotos.length > batch && <button class="load-more" type="button" data-batch={batch}>{t.loadMore}</button>}
+    </section>
+  )}
+  <script>
+    // Reveal the next batch of gallery photos; focus the first new one so keyboard users continue from there.
+    const more = document.querySelector<HTMLButtonElement>('.load-more');
+    more?.addEventListener('click', () => {
+      const hidden = [...document.querySelectorAll<HTMLElement>('.detail-grid > [hidden]')];
+      const next = hidden.slice(0, Number(more.dataset.batch));
+      next.forEach((item) => { item.hidden = false; });
+      next[0]?.focus();
+      if (hidden.length <= next.length) more.remove();
+    });
+  </script>
 
   {otherUnits.length > 0 && (
     <section class="spaces wrap" slot="after-practical" aria-labelledby="other-spaces-title">

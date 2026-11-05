@@ -4,8 +4,8 @@ import ApartmentCard from '../components/ApartmentCard.astro';
 import { Image } from 'astro:assets';
 import { bookUrl, getProperty, mapEmbedUrl, mapsUrl } from '../lib/property';
 import { localePath, strings, toLocale } from '../lib/i18n';
-// Owner photo (IMG_20220521_091919).
-import heroImage from '../assets/images/hero.jpg';
+// Unsplash License photo; source in src/assets/images/stock/SOURCES.md.
+import heroImage from '../assets/images/stock/lake-bled-island.jpg';
 import { photoSource, photoUrl } from '../lib/images';
 const exteriorImage = photoSource('/images/apartments-bassanese/521910555.webp');
 
@@ -13,6 +13,7 @@ const locale = toLocale(Astro.currentLocale);
 const t = strings(locale);
 const property = await getProperty(locale);
 const story = property.narrative;
+const google = property.googleRating;
 // Rows of three; a remainder becomes larger cards in the last row so no row is left short.
 const unitCount = property.units.length;
 const leadCount = [0, 4, 2][unitCount % 3] ?? 0;
@@ -44,12 +45,22 @@ const jsonLd = {
 <Layout title={`${property.name} | ${property.city ?? t.accommodation}`} {description} image={propertyImages[0]} {jsonLd} {property}>
   <div class="fold">
   <section class="hero" aria-labelledby="hero-title">
-    <Image src={heroImage} widths={[768, 1280, 1920, 2560]} sizes="100vw" alt={t.heroAlt} loading="eager" fetchpriority="high" />
+    {/* Phones show the photo zoomed to ~2× the screen height (see .hero > img), so ask for a matching width. */}
+    <Image src={heroImage} widths={[768, 1280, 1920, 2560, 3200]} sizes="(max-width: 600px) 200vh, max(100vw, 120vh)" alt={t.heroAlt} loading="eager" fetchpriority="high" />
     <div class="hero-content wrap">
       <div>
         <h1 id="hero-title">{story.heroTitle}</h1>
         <p>{story.introText}</p>
-        <a class="button" href={bookUrl(property, undefined, locale)} target="_blank" rel="noopener noreferrer">{t.bookNow}</a>
+        <div class="hero-actions">
+          <a class="button" href={bookUrl(property, undefined, locale)} target="_blank" rel="noopener noreferrer">{t.bookNow}</a>
+          {google && (
+            <a class="hero-rating" href={google.url} target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor" /></svg>
+              <strong>{google.value.toLocaleString(t.htmlLang, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</strong>
+              <span>{t.googleReviews(google.count)}</span>
+            </a>
+          )}
+        </div>
       </div>
     </div>
   </section>
@@ -66,7 +77,7 @@ const jsonLd = {
 
   <section class="spaces wrap" id="apartments" aria-labelledby="spaces-title">
     <div class="section-heading">
-      <h2 id="spaces-title">{t.exploreTitle[0]}<br/>{t.exploreTitle[1]}</h2>
+      <div><h2 id="spaces-title">{t.exploreTitle[0]}<br/>{t.exploreTitle[1]}</h2></div>
       {story.spacesText && <div class="section-text">{story.spacesText.split('\n').map(line => <p>{line}</p>)}</div>}
     </div>
     <div class:list={['apartment-grid', leadCount && `lead-${leadCount}`, unitCount % 2 === 1 && 'odd']}>
@@ -80,7 +91,7 @@ const jsonLd = {
         <h2 id="setting-title">{story.settingTitle ?? t.location}</h2>
         {story.settingText && <p>{story.settingText}</p>}
         {address && <address><a href={mapsUrl(property)} target="_blank" rel="noopener noreferrer">{address}</a></address>}
-        <Image class="setting-photo" src={exteriorImage} widths={[480, 768, exteriorImage.width]} sizes="(max-width: 700px) 92vw, 45vw" alt={t.exteriorAlt} loading="lazy" />
+        <div class="setting-photo"><Image src={exteriorImage} widths={[480, 768, exteriorImage.width]} sizes="(max-width: 700px) 116vw, 57vw" alt={t.exteriorAlt} loading="lazy" /></div>
       </div>
       <iframe class="setting-map" src={mapSrc} title={t.mapTitle(property.name)} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
     </div>

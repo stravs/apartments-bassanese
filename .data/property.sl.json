@@ -8,10 +8,10 @@
     "Vrt in terasa"
   ],
   "narrative": {
-    "heroTitle": "Dobrodošli.",
+    "heroTitle": "Vaš kotiček\nna Bledu.",
     "heroText": "Lastna kuhinja. Košček zelenja pred vrati. Kraj za odklop na Bledu.",
     "introTitle": "Izhodišče za Bled.\nProstor zase.",
-    "introText": "Živite po svojem ritmu. Pripravite zajtrk, pustite avto in se odpravite raziskovat.",
+    "introText": "Pet apartmajev z lastno kuhinjo, 10 minut hoje od jezera. Pripravite zajtrk, pustite avto in se odpravite raziskovat.",
     "settingTitle": "Lokacija",
     "settingText": "Mirna lega, le kratek sprehod do Blejskega jezera. Restavracije, bari, pekarna in trgovine so blizu in peš dosegljivi. Brezplačno parkirišče pri hiši, tako da avto lahko počiva.",
     "practical": [
@@ -29,11 +29,11 @@
       },
       {
         "label": "Okolica Bleda",
-        "value": "Hiša stoji na Koritenski 17a na Bledu. Opis oglasa navaja 400 metrov do Blejskega jezera, preglednica okolice pa 900 jardov. Preverite dejansko pot in se ne zanašajte na eno samo razdaljo."
+        "value": "Hiša stoji na Koritenski 17a, na mirni lokaciji približno 10 minut hoje od Blejskega jezera. Trgovina je 2 minuti peš, restavracije, bari in pekarna so blizu."
       },
       {
         "label": "Varščina",
-        "value": "Oglas zahteva 300 € varščine za morebitno škodo, plačane v gotovini ob prihodu. Vrne se v gotovini ob odjavi, po pregledu nastanitve. Ob rezervaciji preverite veljavne pogoje."
+        "value": "Ob prihodu plačate 300 € varščine za morebitno škodo v gotovini. Vrnemo jo v gotovini ob odjavi, po kratkem pregledu apartmaja."
       },
       {
         "label": "Otroci",
@@ -42,10 +42,6 @@
       {
         "label": "Naj bo mirno",
         "value": "Kajenje, hišni ljubljenčki in zabave niso dovoljeni. Nočni mir med 22:00 in 10:00."
-      },
-      {
-        "label": "Vaša rezervacija",
-        "value": "Cene, razpoložljivost, odpoved in predplačilo so odvisni od datumov in izbranega apartmaja. Celotne pogoje preverite na Booking.com."
       }
     ]
   },

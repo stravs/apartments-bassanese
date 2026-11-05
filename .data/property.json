@@ -634,14 +634,14 @@
   ],
   "bookingUrl": "https://www.booking.com/hotel/si/apartments-bassanese.en-gb.html",
   "narrative": {
-    "heroTitle": "Welcome.",
+    "heroTitle": "Your own place\nin Bled.",
     "heroText": "A kitchen of your own. A little green outside. A place to switch off in Bled.",
     "introTitle": "A base for Bled.\nA space for you.",
-    "introText": "Settle into your own rhythm. Make breakfast, leave the car and head out to explore.",
+    "introText": "Five self-catering apartments, a 10-minute walk from the lake. Make breakfast, leave the car and head out to explore.",
     "practical": [
       {
         "label": "Arrive",
-        "value": "Check-in 14:00–20:00. Tell the property your expected arrival time in advance."
+        "value": "Check-in 14:00–20:00. Please let us know your arrival time in advance."
       },
       {
         "label": "Depart",
@@ -653,11 +653,11 @@
       },
       {
         "label": "Around Bled",
-        "value": "The property is at Koritenska 17a in Bled. The listing description says 400 metres to Lake Bled; its surroundings table gives 900 yards. Check the actual route rather than relying on a single distance."
+        "value": "We’re at Koritenska 17a, a quiet spot about a 10-minute walk from Lake Bled. A grocery store is 2 minutes away on foot, with restaurants, bars and a bakery close by."
       },
       {
         "label": "Deposit",
-        "value": "The listing requires a €300 cash damage deposit on arrival, refundable in cash at check-out subject to a property inspection. Confirm current terms when booking."
+        "value": "A €300 cash damage deposit is due on arrival. It’s returned in cash at check-out after a quick look around the apartment."
       },
       {
         "label": "Children",
@@ -666,13 +666,15 @@
       {
         "label": "Keep it peaceful",
         "value": "No smoking, pets or parties. Quiet hours 22:00–10:00."
-      },
-      {
-        "label": "Your booking",
-        "value": "Prices, availability, cancellation and prepayment depend on dates and apartment option. Check the full conditions on Booking.com."
       }
     ],
     "settingTitle": "Location",
     "settingText": "A quiet spot, an easy walk from Lake Bled. Restaurants, bars, a bakery and supermarkets are close by on foot. Free parking on site, so the car can stay put."
-  }
+  },
+  "googleRating": {
+    "value": 4.5,
+    "count": 57,
+    "url": "https://www.google.com/maps/search/?api=1&query=Apartments%20Bassanese%2C%20Koritenska%2017a%2C%204260%2C%20Bled"
+  },
+  "email": "luka@apartments-bassanese.si"
 }
