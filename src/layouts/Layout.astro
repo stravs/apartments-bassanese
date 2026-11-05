@@ -1,8 +1,9 @@
 ---
 import '../styles/global.css';
 import UnitLightbox from '../components/UnitLightbox.astro';
-import { pad, unitPath, type Property, type PropertyUnit } from '../lib/property';
+import { bookUrl, pad, unitPath, type Property, type PropertyUnit } from '../lib/property';
 import { getSiteConfig } from '../lib/site';
+import { alternatePath, localePath, strings, toLocale } from '../lib/i18n';
 
 interface Props {
   title: string;
@@ -19,9 +20,14 @@ const siteConfig = await getSiteConfig();
 const { colors } = siteConfig.design;
 const style = `--ink:${colors.text};--muted:${colors.muted};--paper:${colors.background};--surface:${colors.surface};--primary:${colors.primary};--accent:${colors.accent}`;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const locale = toLocale(Astro.currentLocale);
+const t = strings(locale);
+const other = locale === 'en' ? 'sl' : 'en';
+const otherPath = alternatePath(Astro.url.pathname, other);
+const home = localePath(locale, '/');
 ---
 <!doctype html>
-<html lang="en">
+<html lang={t.htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -31,7 +37,9 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
     <link rel="canonical" href={canonicalUrl} />
     {siteConfig.site.preview && <meta name="robots" content="noindex,nofollow" />}
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content={t.ogLocale} />
+    <link rel="alternate" hreflang="en" href={new URL(alternatePath(Astro.url.pathname, 'en'), Astro.site).href} />
+    <link rel="alternate" hreflang="sl" href={new URL(alternatePath(Astro.url.pathname, 'sl'), Astro.site).href} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
@@ -41,21 +49,22 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
   </head>
   <body>
     <div class="page" style={style}>
-      <a class="skip" href="#main">Skip to content</a>
+      <a class="skip" href="#main">{t.skip}</a>
       <header class="header wrap">
-        <a class="brand" href="/" aria-label={`${property.name} home`}>
+        <a class="brand" href={home} aria-label={t.home(property.name)}>
           <span>{wordmark}<span class="brand-dot">.</span></span>
         </a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-        <nav id="site-nav" aria-label="Main navigation">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-open-label={t.close} data-closed-label={t.menu}>{t.menu}</button>
+        <nav id="site-nav" aria-label={t.mainNav}>
           <div class="nav-drop">
-            <a href="/#apartments">The spaces</a>
+            <a href={localePath(locale, '/#apartments')}>{t.apartments}</a>
             <ul>
-              {property.units.map(item => <li><a href={unitPath(item.id)} aria-current={item.id === unit?.id ? 'page' : undefined}>{item.name}</a></li>)}
+              {property.units.map(item => <li><a href={localePath(locale, unitPath(item.id))} aria-current={item.id === unit?.id ? 'page' : undefined}>{item.name}</a></li>)}
             </ul>
           </div>
-          <a href="/#place">Location</a>
-          <a href="/#arrival">Good to know</a>
+          <a href={localePath(locale, '/#place')}>{t.location}</a>
+          <a class="nav-lang" href={otherPath} hreflang={other} lang={other} aria-label={strings(other).languageName}>{strings(other).languageShort}</a>
+          <a class="nav-book" href={bookUrl(property, unit, locale)} target="_blank" rel="noopener noreferrer">{t.bookNow}</a>
         </nav>
       </header>
       <script is:inline>
@@ -65,7 +74,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
           const setOpen = (open) => {
             header.classList.toggle('open', open);
             toggle.setAttribute('aria-expanded', String(open));
-            toggle.textContent = open ? 'Close' : 'Menu';
+            toggle.textContent = open ? toggle.dataset.openLabel : toggle.dataset.closedLabel;
           };
           toggle.addEventListener('click', () => setOpen(!header.classList.contains('open')));
           header.querySelector('nav').addEventListener('click', (event) => { if (event.target.closest('a')) setOpen(false); });
@@ -76,30 +85,32 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
       <main id="main">
         <slot />
 
-        <section class="practical wrap" id="arrival" aria-labelledby="arrival-title">
-          <div class="practical-heading">
-            <h2 id="arrival-title">The useful<br/>little things.</h2>
-          </div>
-          <div class="accordion">
-            {property.narrative.practical.map((item, index) => (
-              <details open={index === 0}>
-                <summary><span class="label">{pad(index + 1)}</span>{item.label}<span class="plus" aria-hidden="true"></span></summary>
-                <p>{item.value}</p>
-              </details>
-            ))}
-          </div>
-        </section>
+        {unit && (
+          <section class="practical wrap" id="arrival" aria-labelledby="arrival-title">
+            <div class="practical-heading">
+              <h2 id="arrival-title">{t.practicalTitle[0]}<br/>{t.practicalTitle[1]}</h2>
+            </div>
+            <div class="accordion">
+              {property.narrative.practical.map((item, index) => (
+                <details open={index === 0}>
+                  <summary><span class="label">{pad(index + 1)}</span>{item.label}<span class="plus" aria-hidden="true"></span></summary>
+                  <p>{item.value}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        )}
 
         <slot name="after-practical" />
       </main>
 
       <footer class="footer wrap">
         <div class="footer-top">
-          <a class="brand" href="/">{wordmark}<span class="brand-dot">.</span></a>
+          <a class="brand" href={home}>{wordmark}<span class="brand-dot">.</span></a>
           <p>{property.address}<br/>{property.city}, {property.country}</p>
         </div>
       </footer>
-      <UnitLightbox units={unit ? [unit] : property.units} />
+      <UnitLightbox units={unit ? [unit] : property.units} {locale} />
     </div>
   </body>
 </html>

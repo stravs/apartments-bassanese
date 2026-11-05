@@ -1,0 +1,11 @@
+---
+import type { GetStaticPaths } from 'astro';
+import UnitPage from '../../../views/UnitPage.astro';
+import { getProperty, unitSlug } from '../../../lib/property';
+
+export const getStaticPaths = (async () => {
+  const property = await getProperty('sl');
+  return property.units.map(unit => ({ params: { slug: unitSlug(unit.id) }, props: { property, unit } }));
+}) satisfies GetStaticPaths;
+---
+<UnitPage {...Astro.props} />

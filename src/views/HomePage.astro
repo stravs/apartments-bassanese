@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ApartmentCard from '../components/ApartmentCard.astro';
+import { Image } from 'astro:assets';
+import { bookUrl, getProperty, mapEmbedUrl, mapsUrl } from '../lib/property';
+import { localePath, strings, toLocale } from '../lib/i18n';
+// Owner photo (IMG_20220521_091919).
+import heroImage from '../assets/images/hero.jpg';
+import { photoSource, photoUrl } from '../lib/images';
+const exteriorImage = photoSource('/images/apartments-bassanese/521910555.webp');
+
+const locale = toLocale(Astro.currentLocale);
+const t = strings(locale);
+const property = await getProperty(locale);
+const story = property.narrative;
+// Rows of three; a remainder becomes larger cards in the last row so no row is left short.
+const unitCount = property.units.length;
+const leadCount = [0, 4, 2][unitCount % 3] ?? 0;
+const mapSrc = mapEmbedUrl(property, locale);
+const address = [[property.address, property.city].filter(Boolean).join(' '), property.country].filter(Boolean).join(', ');
+
+// Icons follow amenity order (lake, grocery, parking, garden); any further amenity reuses the last one.
+const amenityIcons = [
+  'M3 11l5-6 4 4 3-3 6 5M2 16c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2M2 20c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2',
+  'M5 8h14l-1 13H6L5 8zm4 0V6a3 3 0 0 1 6 0v2',
+  'M6 21V3h7a5 5 0 0 1 0 10H6',
+  'M12 21V9m0 5c-7 0-8-7-8-7 7 0 8 4 8 7zm0 3c7 0 8-7 8-7-7 0-8 4-8 7z',
+];
+
+const location = [property.city, property.country].filter(Boolean).join(', ');
+const description = `${property.name}${location ? ` — ${location}` : ''}. ${property.description}`.replace(/\s+/g, ' ').trim().slice(0, 158);
+const unitImages = await Promise.all(property.units.map((unit) => Promise.all(unit.photos.map((photo) => photoUrl(photo.url)))));
+const propertyImages = await Promise.all(property.photos.map((photo) => photoUrl(photo.url)));
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'LodgingBusiness', name: property.name,
+  description: property.description, url: new URL(localePath(locale, '/'), Astro.site).href, image: [...propertyImages, ...unitImages.flat()],
+  address: { '@type': 'PostalAddress', streetAddress: property.address, addressLocality: property.city, addressCountry: property.country },
+  geo: property.latitude !== undefined && property.longitude !== undefined ? { '@type': 'GeoCoordinates', latitude: property.latitude, longitude: property.longitude } : undefined,
+  aggregateRating: property.rating && property.reviewCount ? { '@type': 'AggregateRating', ratingValue: property.rating, reviewCount: property.reviewCount, bestRating: 10 } : undefined,
+  sameAs: property.bookingUrl, slogan: [property.address, property.city, property.country].filter(Boolean).join(', '),
+  containsPlace: property.units.map((unit, index) => ({ '@type': 'Accommodation', name: unit.name, description: unit.description, image: unitImages[index], occupancy: unit.maxGuests ? { '@type': 'QuantitativeValue', maxValue: unit.maxGuests } : undefined, floorSize: unit.areaSquareMetres ? { '@type': 'QuantitativeValue', value: unit.areaSquareMetres, unitCode: 'MTK' } : undefined })),
+};
+---
+<Layout title={`${property.name} | ${property.city ?? t.accommodation}`} {description} image={propertyImages[0]} {jsonLd} {property}>
+  <div class="fold">
+  <section class="hero" aria-labelledby="hero-title">
+    <Image src={heroImage} widths={[768, 1280, 1920, 2560]} sizes="100vw" alt={t.heroAlt} loading="eager" fetchpriority="high" />
+    <div class="hero-content wrap">
+      <div>
+        <h1 id="hero-title">{story.heroTitle}</h1>
+        <p>{story.introText}</p>
+        <a class="button" href={bookUrl(property, undefined, locale)} target="_blank" rel="noopener noreferrer">{t.bookNow}</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="amenities" aria-label={t.propertyHighlights}>
+    {property.amenities.map((amenity, index) => (
+      <div>
+        <p>{amenity}</p>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d={amenityIcons[index] ?? amenityIcons.at(-1)} stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </div>
+    ))}
+  </div>
+  </div>
+
+  <section class="spaces wrap" id="apartments" aria-labelledby="spaces-title">
+    <div class="section-heading">
+      <h2 id="spaces-title">{t.exploreTitle[0]}<br/>{t.exploreTitle[1]}</h2>
+      {story.spacesText && <div class="section-text">{story.spacesText.split('\n').map(line => <p>{line}</p>)}</div>}
+    </div>
+    <div class:list={['apartment-grid', leadCount && `lead-${leadCount}`, unitCount % 2 === 1 && 'odd']}>
+      {property.units.map((unit, index) => <ApartmentCard {unit} {locale} lead={index >= unitCount - leadCount} />)}
+    </div>
+  </section>
+
+  <section class="setting" id="place" aria-labelledby="setting-title">
+    <div class="wrap setting-grid">
+      <div class="setting-copy">
+        <h2 id="setting-title">{story.settingTitle ?? t.location}</h2>
+        {story.settingText && <p>{story.settingText}</p>}
+        {address && <address><a href={mapsUrl(property)} target="_blank" rel="noopener noreferrer">{address}</a></address>}
+        <Image class="setting-photo" src={exteriorImage} widths={[480, 768, exteriorImage.width]} sizes="(max-width: 700px) 92vw, 45vw" alt={t.exteriorAlt} loading="lazy" />
+      </div>
+      <iframe class="setting-map" src={mapSrc} title={t.mapTitle(property.name)} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </div>
+  </section>
+</Layout>

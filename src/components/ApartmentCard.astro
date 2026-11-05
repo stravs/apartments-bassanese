@@ -1,9 +1,10 @@
 ---
 import Photo from './Photo.astro';
 import { unitPath, type PropertyUnit } from '../lib/property';
+import { localePath, strings, type Locale } from '../lib/i18n';
 
-interface Props { unit: PropertyUnit; lead?: boolean }
-const { unit, lead = false } = Astro.props;
+interface Props { unit: PropertyUnit; locale: Locale; lead?: boolean }
+const { unit, locale, lead = false } = Astro.props;
 const cover = unit.photos[0];
 const facts = [
   unit.areaSquareMetres && `${unit.areaSquareMetres} m²`,
@@ -15,8 +16,9 @@ const facts = [
   <div class="card-image">
     {cover
       ? <Photo photo={cover} sizes={lead ? '(max-width: 800px) 92vw, 46vw' : '(max-width: 600px) 92vw, (max-width: 800px) 46vw, 30vw'} fallbackAlt={unit.name} />
-      : <div class="placeholder">Photos coming soon</div>}
+      : <div class="placeholder">{strings(locale).photosSoon}</div>}
   </div>
-  <h3><a href={unitPath(unit.id)}>{unit.name}</a></h3>
+  <h3><a href={localePath(locale, unitPath(unit.id))}>{unit.name}</a></h3>
+  {unit.setting && <p class="card-setting">{unit.setting}</p>}
   {facts.length > 0 && <ul class="card-facts">{facts.map(fact => <li>{fact}</li>)}</ul>}
 </article>

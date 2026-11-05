@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Photo from '../components/Photo.astro';
+import ApartmentCard from '../components/ApartmentCard.astro';
+import { bookUrl, pad, type Property, type PropertyUnit } from '../lib/property';
+import { photoUrl } from '../lib/images';
+import { strings, toLocale } from '../lib/i18n';
+
+interface Props { property: Property; unit: PropertyUnit }
+const { property, unit } = Astro.props;
+const description = (unit.description ?? `${unit.name} — ${property.name}`).replace(/\s+/g, ' ').slice(0, 158);
+const [cover, ...morePhotos] = unit.photos;
+// Highlights first, then amenities not already listed.
+const facts = [...new Set([...(unit.highlights ?? []), ...unit.amenities])];
+const locale = toLocale(Astro.currentLocale);
+const t = strings(locale);
+const booking = bookUrl(property, unit, locale);
+const otherUnits = property.units.filter(other => other.id !== unit.id);
+---
+<Layout title={`${unit.name} | ${property.name}`} {description} image={cover && await photoUrl(cover.url)} {property} {unit}>
+  <div class="sticky-book" inert>
+    <div class="wrap">
+      <p class="sticky-book-name">{unit.name}</p>
+      <ul class="sticky-book-facts">
+        {unit.occupancyLabel && <li>{unit.occupancyLabel}</li>}
+        {unit.areaSquareMetres && <li>{unit.areaSquareMetres} m²</li>}
+      </ul>
+      <a class="sticky-book-link" href="#arrival">{t.goodToKnow}</a>
+      <a class="button" href={booking} target="_blank" rel="noopener noreferrer">{t.bookNow}</a>
+    </div>
+  </div>
+  <script>
+    // Show the sticky booking bar once the main Book now button has scrolled above the screen.
+    const bar = document.querySelector<HTMLElement>('.sticky-book');
+    const book = document.querySelector('.unit-book');
+    if (bar && book) {
+      new IntersectionObserver((entries) => {
+        const entry = entries[0];
+        if (!entry) return;
+        const show = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+        bar.classList.toggle('show', show);
+        bar.inert = !show;
+      }).observe(book);
+    }
+  </script>
+  <div class="unit-fold">
+  <div class="unit-stage wrap">
+  {cover && (
+    <figure class="unit-cover">
+      <button type="button" data-unit-index="0" data-unit-photo-index="0" aria-label={t.viewPhotos(unit.name)}>
+        <Photo photo={cover} sizes="(max-width: 700px) 92vw, 90vw" fallbackAlt={unit.name} eager />
+      </button>
+    </figure>
+  )}
+
+  <div class="unit-side">
+    <h1 id="unit-title">{unit.name}</h1>
+    <a class="button unit-book" href={booking} target="_blank" rel="noopener noreferrer">{t.bookNow}</a>
+    <ul class="unit-facts">
+      {[unit.areaSquareMetres && `${unit.areaSquareMetres} m²`, unit.occupancyLabel, ...unit.rooms.map(room => room.beds), ...facts].filter(Boolean).map((fact, index) => <li style={`--i: ${index}`}>{fact}</li>)}
+    </ul>
+  </div>
+  </div>
+  </div>
+
+  <section class="detail-gallery wrap" aria-label={t.morePhotos(unit.name)}>
+      {morePhotos.map((photo, index) => (
+        <figure>
+          <button type="button" data-unit-index="0" data-unit-photo-index={index + 1} aria-label={t.viewPhoto(index + 2, unit.name)}>
+            <Photo {photo} sizes="(max-width: 700px) 92vw, 44vw" fallbackAlt={unit.name} />
+          </button>
+          <figcaption><span>{pad(index + 2)} / {pad(unit.photos.length)}</span></figcaption>
+        </figure>
+      ))}
+  </section>
+
+  {otherUnits.length > 0 && (
+    <section class="spaces wrap" slot="after-practical" aria-labelledby="other-spaces-title">
+      <div class="section-heading">
+        <div><h2 id="other-spaces-title">{t.otherTitle[0]}<br/>{t.otherTitle[1]}</h2></div>
+      </div>
+      <div class="apartment-grid lead-4">
+        {otherUnits.map((other, index) => <ApartmentCard unit={other} {locale} lead={index < 4} />)}
+      </div>
+    </section>
+  )}
+</Layout>

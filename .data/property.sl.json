@@ -1,0 +1,223 @@
+{
+  "country": "Slovenija",
+  "description": "Apartmaji z lastno kuhinjo na Bledu, z vrtom, balkonom ali teraso in brezplačnim zasebnim parkiriščem.",
+  "amenities": [
+    "10 minut hoje do Blejskega jezera",
+    "Trgovina 2 minuti hoje",
+    "Brezplačno zasebno parkirišče",
+    "Vrt in terasa"
+  ],
+  "narrative": {
+    "heroTitle": "Dobrodošli.",
+    "heroText": "Lastna kuhinja. Košček zelenja pred vrati. Kraj za odklop na Bledu.",
+    "introTitle": "Izhodišče za Bled.\nProstor zase.",
+    "introText": "Živite po svojem ritmu. Pripravite zajtrk, pustite avto in se odpravite raziskovat.",
+    "settingTitle": "Lokacija",
+    "settingText": "Mirna lega, le kratek sprehod do Blejskega jezera. Restavracije, bari, pekarna in trgovine so blizu in peš dosegljivi. Brezplačno parkirišče pri hiši, tako da avto lahko počiva.",
+    "practical": [
+      {
+        "label": "Prihod",
+        "value": "Prijava med 14:00 in 20:00. Predvideni čas prihoda sporočite vnaprej."
+      },
+      {
+        "label": "Odhod",
+        "value": "Odjava med 08:00 in 10:00."
+      },
+      {
+        "label": "Parkiranje",
+        "value": "Brezplačno zasebno parkirišče pri hiši. Rezervacija ni potrebna."
+      },
+      {
+        "label": "Okolica Bleda",
+        "value": "Hiša stoji na Koritenski 17a na Bledu. Opis oglasa navaja 400 metrov do Blejskega jezera, preglednica okolice pa 900 jardov. Preverite dejansko pot in se ne zanašajte na eno samo razdaljo."
+      },
+      {
+        "label": "Varščina",
+        "value": "Oglas zahteva 300 € varščine za morebitno škodo, plačane v gotovini ob prihodu. Vrne se v gotovini ob odjavi, po pregledu nastanitve. Ob rezervaciji preverite veljavne pogoje."
+      },
+      {
+        "label": "Otroci",
+        "value": "Otroci vseh starosti so dobrodošli. Otroških posteljic in dodatnih ležišč ni. Na Booking.com vpišite starost otrok, da preverite pravo zasedenost in ceno."
+      },
+      {
+        "label": "Naj bo mirno",
+        "value": "Kajenje, hišni ljubljenčki in zabave niso dovoljeni. Nočni mir med 22:00 in 10:00."
+      },
+      {
+        "label": "Vaša rezervacija",
+        "value": "Cene, razpoložljivost, odpoved in predplačilo so odvisni od datumov in izbranega apartmaja. Celotne pogoje preverite na Booking.com."
+      }
+    ]
+  },
+  "units": {
+    "booking-room-108688901": {
+      "name": "Apartma z balkonom",
+      "description": "Klimatiziran apartma ima dnevno sobo, ločeno spalnico in kopalnico s tušem. V popolnoma opremljeni kuhinji so kuhalna plošča, hladilnik, kuhinjski pripomočki in električni grelnik vode. Apartma ima balkon s pogledom na vrt, sedežni kotiček in TV z ravnim zaslonom s kabelskimi programi. Na voljo je 1 postelja.",
+      "setting": "Balkon s pogledom na vrt",
+      "highlights": [
+        "Klimatska naprava",
+        "Dnevna soba",
+        "Ločena spalnica",
+        "Kopalnica s tušem",
+        "Opremljena kuhinja",
+        "Balkon",
+        "Pogled na vrt",
+        "Sedežni kotiček",
+        "TV z ravnim zaslonom"
+      ],
+      "amenities": [
+        "Kuhinja",
+        "Ogrevanje",
+        "Sušilnik za lase"
+      ],
+      "occupancyLabel": "2 odrasla, 1 otrok",
+      "rooms": [
+        {
+          "name": "Postelje",
+          "beds": "1 velika zakonska postelja"
+        }
+      ]
+    },
+    "booking-room-108688906": {
+      "name": "Apartma s teraso",
+      "description": "Klimatiziran apartma ima spalnico in kopalnico s tušem in sušilnikom za lase. Obroke lahko pripravite v dobro opremljeni kuhinji s kuhalno ploščo, hladilnikom, kuhinjskimi pripomočki in električnim grelnikom vode. Apartma ima teraso s pogledom na mesto, sedežni kotiček in TV z ravnim zaslonom s kabelskimi programi. Na voljo je 1 postelja.",
+      "setting": "Terasa s pogledom na mesto",
+      "highlights": [
+        "Klimatska naprava",
+        "Spalnica",
+        "Kopalnica s tušem",
+        "Sušilnik za lase",
+        "Opremljena kuhinja",
+        "Terasa",
+        "Pogled na mesto",
+        "Sedežni kotiček",
+        "TV z ravnim zaslonom"
+      ],
+      "amenities": [
+        "Kuhinja",
+        "Ogrevanje",
+        "Sušilnik za lase"
+      ],
+      "occupancyLabel": "2 odrasla, 1 otrok",
+      "rooms": [
+        {
+          "name": "Postelje",
+          "beds": "1 zakonska postelja"
+        }
+      ]
+    },
+    "booking-room-108688905": {
+      "name": "Apartma z balkonom (2 odrasla)",
+      "description": "Klimatiziran apartma ima spalnico in kopalnico s tušem in sušilnikom za lase. V dobro opremljeni kuhinji so kuhalna plošča, hladilnik, kuhinjski pripomočki in električni grelnik vode. Apartma ima balkon s pogledom na vrt, sedežni kotiček in TV z ravnim zaslonom s kabelskimi programi. Na voljo je 1 postelja.",
+      "setting": "Balkon s pogledom na vrt",
+      "highlights": [
+        "Klimatska naprava",
+        "Spalnica",
+        "Kopalnica s tušem",
+        "Sušilnik za lase",
+        "Opremljena kuhinja",
+        "Balkon",
+        "Pogled na vrt",
+        "Sedežni kotiček",
+        "TV z ravnim zaslonom"
+      ],
+      "amenities": [
+        "Kuhinja",
+        "Ogrevanje",
+        "Sušilnik za lase"
+      ],
+      "occupancyLabel": "2 odrasla, 1 otrok",
+      "rooms": [
+        {
+          "name": "Postelje",
+          "beds": "1 velika zakonska postelja"
+        }
+      ]
+    },
+    "booking-room-108688908": {
+      "name": "Studio – pritličje",
+      "description": "Apartma ima kuhinjo, sedežni kotiček, ločeno spalnico in kopalnico s tušem in sušilnikom za lase. Kuhinja je opremljena s kuhalno ploščo, hladilnikom in kuhinjskimi pripomočki. V apartmaju so še omara, električni grelnik vode, TV z ravnim zaslonom s kabelskimi programi in jedilni kotiček na prostem. Na voljo je 1 postelja.",
+      "setting": "Pritličje · jedilni kotiček na prostem",
+      "highlights": [
+        "Ločena spalnica",
+        "Kopalnica s tušem",
+        "Sušilnik za lase",
+        "Opremljena kuhinja",
+        "Sedežni kotiček",
+        "Omara",
+        "TV z ravnim zaslonom",
+        "Jedilni kotiček na prostem"
+      ],
+      "amenities": [
+        "Kuhinja",
+        "Ogrevanje",
+        "Sušilnik za lase"
+      ],
+      "occupancyLabel": "2 odrasla, 1 otrok",
+      "rooms": [
+        {
+          "name": "Postelje",
+          "beds": "1 zakonska postelja"
+        }
+      ]
+    },
+    "booking-room-108688909": {
+      "name": "Apartma s pogledom na vrt",
+      "description": "Apartma ima dnevno sobo, ločeno spalnico in kopalnico s tušem in sušilnikom za lase. Obroke lahko pripravite v dobro opremljeni kuhinji s kuhalno ploščo, hladilnikom, kuhinjskimi pripomočki in električnim grelnikom vode. Apartma ima teraso s pogledom na vrt, sedežni kotiček in TV z ravnim zaslonom s kabelskimi programi. Na voljo je 1 postelja.",
+      "setting": "Terasa s pogledom na vrt",
+      "highlights": [
+        "Dnevna soba",
+        "Ločena spalnica",
+        "Kopalnica s tušem",
+        "Sušilnik za lase",
+        "Opremljena kuhinja",
+        "Terasa",
+        "Pogled na vrt",
+        "Sedežni kotiček",
+        "TV z ravnim zaslonom"
+      ],
+      "amenities": [
+        "Kuhinja",
+        "Ogrevanje",
+        "Sušilnik za lase"
+      ],
+      "occupancyLabel": "2 odrasla, 1 otrok",
+      "rooms": [
+        {
+          "name": "Postelje",
+          "beds": "1 velika zakonska postelja"
+        }
+      ]
+    }
+  },
+  "photoAlts": {
+    "Bedroom under a pale wood ceiling": "Spalnica pod svetlim lesenim stropom",
+    "Garden-side seating · Apartment with Garden View": "Sedenje ob vrtu · Apartma s pogledom na vrt",
+    "Tree-facing balcony · Apartment with Balcony": "Balkon proti drevesom · Apartma z balkonom",
+    "Warm wood, soft light · Apartment with Balcony": "Topel les, mehka svetloba · Apartma z balkonom",
+    "Gallery image of Apartments Bassanese in Bled": "Fotografija apartmajev Bassanese na Bledu",
+    "Bedroom and dining area in the Apartment with Terrace": "Spalnica in jedilni kotiček v apartmaju s teraso",
+    "Balcony doors and dining area in the Apartment with Balcony (2 Adults)": "Balkonska vrata in jedilni kotiček v apartmaju z balkonom (2 odrasla)",
+    "Living area in the Apartment with Garden View": "Bivalni prostor v apartmaju s pogledom na vrt",
+    "a white room with a table and a kitchen at Apartments Bassanese in Bled": "Bela soba z mizo in kuhinjo",
+    "a bathroom with a shower and a sink and a toilet at Apartments Bassanese in Bled": "Kopalnica s tušem, umivalnikom in straniščem",
+    "a kitchen with a sink and a counter top at Apartments Bassanese in Bled": "Kuhinja z umivalnikom in delovnim pultom",
+    "a white living room with a table and a tv at Apartments Bassanese in Bled": "Bela dnevna soba z mizo in televizorjem",
+    "a living room with a tv on a white cabinet at Apartments Bassanese in Bled": "Dnevna soba s televizorjem na beli omarici",
+    "a room with a vase on a dresser with a window at Apartments Bassanese in Bled": "Soba z vazo na predalniku ob oknu",
+    "a white bedroom with a bed and a kitchen at Apartments Bassanese in Bled": "Bela spalnica s posteljo in kuhinjo",
+    "a white bedroom with a bed with a blanket at Apartments Bassanese in Bled": "Bela spalnica s posteljo in odejo",
+    "a kitchen with white cabinets and a microwave at Apartments Bassanese in Bled": "Kuhinja z belimi omaricami in mikrovalovno pečico",
+    "a room with a table and chairs and flowers at Apartments Bassanese in Bled": "Soba z mizo, stoli in rožami",
+    "a white cabinet with a flat screen tv on a wall at Apartments Bassanese in Bled": "Bela omarica in televizor z ravnim zaslonom na steni",
+    "a kitchen with white cabinets and a black microwave at Apartments Bassanese in Bled": "Kuhinja z belimi omaricami in črno mikrovalovno pečico",
+    "a kitchen with a sink and a microwave at Apartments Bassanese in Bled": "Kuhinja z umivalnikom in mikrovalovno pečico",
+    "a small room with a wooden table and flowers at Apartments Bassanese in Bled": "Majhna soba z leseno mizo in rožami",
+    "a bathroom with a shower and a toilet and a sink at Apartments Bassanese in Bled": "Kopalnica s tušem, straniščem in umivalnikom",
+    "a living room with a couch and a table at Apartments Bassanese in Bled": "Dnevna soba s kavčem in mizo",
+    "a living room with a flat screen tv on a white wall at Apartments Bassanese in Bled": "Dnevna soba s televizorjem z ravnim zaslonom na beli steni",
+    "a small kitchen with a sink and a door at Apartments Bassanese in Bled": "Majhna kuhinja z umivalnikom in vrati",
+    "two pots with flowers in them sitting on a patio at Apartments Bassanese in Bled": "Dva cvetlična lonca na terasi",
+    "three flower pots with flowers in them on a patio at Apartments Bassanese in Bled": "Trije cvetlični lonci na terasi"
+  }
+}
