@@ -280,7 +280,10 @@ button { font: inherit; }
   .reviews { padding-block: 56px 64px; }
   .review-scores { margin-top: 28px; gap: 40px; }
   .review-scores strong { font-size: 44px; }
-  .review-grid { grid-template-columns: 1fr; gap: 36px; }
+  /* Phones: reviews swipe sideways, edge to edge; the next card peeks in as a hint. */
+  .review-grid { display: flex; max-width: none; gap: 16px; margin-inline: -20px; padding-inline: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 20px; scrollbar-width: none; }
+  .review-grid::-webkit-scrollbar { display: none; }
+  .review { flex: 0 0 85%; scroll-snap-align: start; animation: none !important; }
   .review blockquote { font-size: 18px; }
   .hero-ratings { justify-content: center; }
   .section-heading { display: block; margin-bottom: 35px; }
