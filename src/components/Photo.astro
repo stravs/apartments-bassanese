@@ -13,5 +13,7 @@ interface Props {
 }
 const { photo, sizes, fallbackAlt, eager = false } = Astro.props;
 const src = photoSource(photo.url);
+// Steps between small and full size, so retina screens get a photo that fits instead of the 2400px original.
+const widths = [...[480, 768, 1080, 1440, 1920].filter(w => w < src.width), src.width];
 ---
-<Image {src} widths={[480, 768, src.width]} sizes={sizes} alt={photo.alt ?? fallbackAlt ?? ''} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined} />
+<Image {src} {widths} sizes={sizes} alt={photo.alt ?? fallbackAlt ?? ''} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined} />
