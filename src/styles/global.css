@@ -72,6 +72,8 @@ button { font: inherit; }
 .hero-rating svg { width: 18px; height: 18px; color: #f5c451; }
 .hero-rating span { text-decoration: underline; text-decoration-color: rgb(255 255 255 / .5); text-underline-offset: 4px; }
 .hero-rating:hover span { text-decoration-color: currentColor; }
+.hero-ratings { display: flex; flex-wrap: wrap; gap: 12px 28px; }
+.score-badge { padding: 3px 7px; border-radius: 4px 4px 4px 0; background: var(--paper); color: var(--accent); font-size: 14px; }
 .hero .button { min-height: 60px; padding-inline: 40px; font-size: 16px; font-weight: 600; background: var(--paper); border-color: var(--paper); color: var(--accent); transition: background .2s, color .2s, border-color .2s; }
 .hero .button:hover { background: var(--accent); border-color: var(--accent); color: var(--paper); }
 .header nav .nav-book { color: var(--accent); font-weight: 650; }
@@ -96,12 +98,28 @@ button { font: inherit; }
 .card-facts li + li::before { content: '·'; margin-inline: 8px; }
 .card-image { display: block; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: var(--surface); border-radius: 3px; transition: box-shadow .3s; }
 /* .in-view: touch screens, set by ApartmentCard's script while the card crosses the middle of the screen. */
-.apartment.in-view .card-image { box-shadow: 0 14px 30px -14px color-mix(in srgb, var(--ink) 45%, transparent); }
+.apartment.in-view .card-image { box-shadow: 0 10px 22px -12px color-mix(in srgb, var(--ink) 25%, transparent); }
 @media (hover: hover) {
-  .apartment:hover .card-image { box-shadow: 0 14px 30px -14px color-mix(in srgb, var(--ink) 45%, transparent); }
+  .apartment:hover .card-image { box-shadow: 0 10px 22px -12px color-mix(in srgb, var(--ink) 25%, transparent); }
 }
 .card-image img { width: 100%; height: 100%; object-fit: cover; }
 .source-note { margin-top: 30px !important; font-size: 12px; color: var(--muted); max-width: 88ch; }
+/* Accent band, like .cta: paper text, softened paper for secondary text and lines. */
+.reviews { --soft: color-mix(in srgb, var(--paper) 72%, transparent); background: var(--accent); color: var(--paper); padding-block: 100px 120px; }
+.reviews ::selection { background: var(--paper); color: var(--accent); }
+.page .reviews a:focus-visible { outline-color: var(--paper); }
+.review-scores { display: flex; gap: 56px; }
+.review-scores a { display: grid; grid-template-columns: auto 1fr; align-items: baseline; column-gap: 4px; }
+.review-scores strong { font-size: 56px; font-weight: 500; line-height: 1; letter-spacing: -.05em; }
+.review-scores span { color: var(--soft); font-size: 20px; }
+.review-scores small { grid-column: 1 / -1; margin-top: 8px; font-size: 14px; color: var(--soft); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--soft); }
+.review-scores a:hover small { color: var(--paper); text-decoration-color: currentColor; }
+.review-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.review { display: flex; flex-direction: column; margin: 0; padding-top: 28px; border-top: 1px solid var(--soft); }
+.review blockquote { margin: 0; font-size: 20px; line-height: 1.45; letter-spacing: -.015em; }
+.review figcaption { display: flex; justify-content: space-between; gap: 16px; margin-top: auto; padding-top: 24px; font-size: 14px; color: var(--soft); }
+.review figcaption a { text-decoration: underline; text-underline-offset: 4px; }
+.review figcaption a:hover { color: var(--paper); }
 .setting { background: var(--surface); padding-block: 105px; scroll-margin-top: 0; }
 /* Map stretches to the copy column, so both end on the photo's bottom line. */
 .setting-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; }
@@ -203,6 +221,7 @@ button { font: inherit; }
   .practical { gap: 60px; }
 }
 @media (max-width: 800px) {
+  .review-grid { grid-template-columns: 1fr; max-width: 60ch; }
   .unit-fold { height: auto; min-height: 0; }
   .unit-stage { flex-direction: column; gap: 12px; }
   .unit-side { display: contents; }
@@ -261,6 +280,12 @@ button { font: inherit; }
   .amenities svg { width: 19px; height: 19px; }
   .amenities p { font-size: 15px; }
   .spaces { padding-block: 64px; }
+  .reviews { padding-block: 56px 64px; }
+  .review-scores { margin-top: 28px; gap: 40px; }
+  .review-scores strong { font-size: 44px; }
+  .review-grid { grid-template-columns: 1fr; gap: 36px; }
+  .review blockquote { font-size: 18px; }
+  .hero-ratings { justify-content: center; }
   .section-heading { display: block; margin-bottom: 35px; }
   .section-heading .label { margin-bottom: 20px; }
   .section-heading h2 { font-size: 47px; }
@@ -322,7 +347,7 @@ button { font: inherit; }
 /* Reveal on scroll where the browser supports scroll-driven animations; elsewhere content just shows. */
 @supports (animation-timeline: view()) {
   .detail-grid img { animation: settle linear both; animation-timeline: view(); animation-range: entry 0% cover 50%; }
-  .section-heading, .apartment, .setting-copy, .setting-map, .detail-gallery, .practical-heading, .accordion details, .cta-inner > * {
+  .section-heading, .apartment, .review, .setting-copy, .setting-map, .detail-gallery, .practical-heading, .accordion details, .cta-inner > * {
     animation: rise linear both;
     animation-timeline: view();
     animation-range: entry 0% entry 60%;

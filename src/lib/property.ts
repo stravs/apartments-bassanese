@@ -60,6 +60,10 @@ export type Property = {
   reviewCount?: number;
   /** Reviewed Google rating (out of 5), shown in the hero. Not added to structured data: Google ignores self-served ratings. */
   googleRating?: { value: number; count: number; url: string };
+  /** Booking.com score (out of 10) and review count, copied from the listing. Same structured-data rule as googleRating. */
+  bookingRating?: { value: number; count: number; url: string };
+  /** Verbatim guest reviews; url points to where the review is published. */
+  testimonials?: Array<{ quote: string; author: string; country?: string; source: string; url: string }>;
   photos: PropertyPhoto[];
   amenities: string[];
   units: PropertyUnit[];
@@ -77,7 +81,7 @@ export type Property = {
   };
 };
 
-type Translation = Partial<Pick<Property, 'description' | 'country' | 'amenities'>> & {
+type Translation = Partial<Pick<Property, 'description' | 'country' | 'amenities' | 'bookingRating' | 'testimonials'>> & {
   narrative?: Partial<Property['narrative']>;
   units?: Record<string, Partial<Pick<PropertyUnit, 'name' | 'description' | 'setting' | 'highlights' | 'amenities' | 'occupancyLabel' | 'rooms'>>>;
   /** English alt text → translated alt text. */

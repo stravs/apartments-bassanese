@@ -676,5 +676,33 @@
     "count": 57,
     "url": "https://www.google.com/maps/search/?api=1&query=Apartments%20Bassanese%2C%20Koritenska%2017a%2C%204260%2C%20Bled"
   },
-  "email": "luka@apartments-bassanese.si"
+  "bookingRating": {
+    "value": 8.6,
+    "count": 268,
+    "url": "https://www.booking.com/hotel/si/apartments-bassanese.en-gb.html#tab-reviews"
+  },
+  "email": "luka@apartments-bassanese.si",
+  "testimonials": [
+    {
+      "quote": "We loved the view from the balcony, as well as how spacious and comfortable both the room and the balcony were. We also appreciated the afternoon light that filled the space and how responsive our host was.",
+      "author": "Karen",
+      "country": "Austria",
+      "source": "Booking.com",
+      "url": "https://www.booking.com/hotel/si/apartments-bassanese.en-gb.html#tab-reviews"
+    },
+    {
+      "quote": "Very clean, modern and comfortable, good car park. 10-15 min walk to the lake, restaurants, bars. Supermarket 5 mins walk",
+      "author": "Francis",
+      "country": "Australia",
+      "source": "Booking.com",
+      "url": "https://www.booking.com/hotel/si/apartments-bassanese.en-gb.html#tab-reviews"
+    },
+    {
+      "quote": "This property is very close to lake bled, clean, tidy and the host is very helpful. Would definitely recommend!",
+      "author": "Della",
+      "country": "United Kingdom",
+      "source": "Booking.com",
+      "url": "https://www.booking.com/hotel/si/apartments-bassanese.en-gb.html#tab-reviews"
+    }
+  ]
 }

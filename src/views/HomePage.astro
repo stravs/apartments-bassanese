@@ -14,6 +14,9 @@ const t = strings(locale);
 const property = await getProperty(locale);
 const story = property.narrative;
 const google = property.googleRating;
+const booking = property.bookingRating;
+const testimonials = property.testimonials ?? [];
+const score = (value: number) => value.toLocaleString(t.htmlLang, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 // Rows of three; a remainder becomes larger cards in the last row so no row is left short.
 const unitCount = property.units.length;
 const leadCount = [0, 4, 2][unitCount % 3] ?? 0;
@@ -53,12 +56,22 @@ const jsonLd = {
         <p>{story.introText}</p>
         <div class="hero-actions">
           <a class="button" href={bookUrl(property, undefined, locale)} target="_blank" rel="noopener noreferrer">{t.bookNow}</a>
-          {google && (
-            <a class="hero-rating" href={google.url} target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor" /></svg>
-              <strong>{google.value.toLocaleString(t.htmlLang, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</strong>
-              <span>{t.googleReviews(google.count)}</span>
-            </a>
+          {(google || booking) && (
+            <div class="hero-ratings">
+              {booking && (
+                <a class="hero-rating" href={booking.url} target="_blank" rel="noopener noreferrer">
+                  <strong class="score-badge">{score(booking.value)}</strong>
+                  <span>{t.bookingReviews(booking.count)}</span>
+                </a>
+              )}
+              {google && (
+                <a class="hero-rating" href={google.url} target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" fill="currentColor" /></svg>
+                  <strong>{score(google.value)}</strong>
+                  <span>{t.googleReviews(google.count)}</span>
+                </a>
+              )}
+            </div>
           )}
         </div>
       </div>
@@ -84,6 +97,32 @@ const jsonLd = {
       {property.units.map((unit, index) => <ApartmentCard {unit} {locale} lead={index >= unitCount - leadCount} />)}
     </div>
   </section>
+
+  {testimonials.length > 0 && (
+    <section class="reviews" id="reviews" aria-labelledby="reviews-title">
+      <div class="wrap">
+      <div class="section-heading">
+        <div><h2 id="reviews-title">{t.reviewsTitle[0]}<br/>{t.reviewsTitle[1]}</h2></div>
+        <div class="review-scores">
+          {booking && <a href={booking.url} target="_blank" rel="noopener noreferrer"><strong>{score(booking.value)}</strong><span>/10</span><small>{t.bookingReviews(booking.count)}</small></a>}
+          {google && <a href={google.url} target="_blank" rel="noopener noreferrer"><strong>{score(google.value)}</strong><span>/5</span><small>{t.googleReviews(google.count)}</small></a>}
+        </div>
+      </div>
+      <div class="review-grid">
+        {testimonials.map((review) => (
+          <figure class="review">
+            {/* Quotes are verbatim, in the guest's language (English). */}
+            <blockquote lang="en"><p>“{review.quote}”</p></blockquote>
+            <figcaption>
+              <span>{[review.author, review.country].filter(Boolean).join(', ')}</span>
+              <a href={review.url} target="_blank" rel="noopener noreferrer">{review.source}</a>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+      </div>
+    </section>
+  )}
 
   <section class="setting" id="place" aria-labelledby="setting-title">
     <div class="wrap setting-grid">

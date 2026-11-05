@@ -44,6 +44,8 @@ const en = {
   viewPhoto: (n: number, name: string) => `View photo ${n} of ${name}`,
   photosSoon: 'Photos coming soon',
   googleReviews: (n: number) => `${n} Google ${n === 1 ? 'review' : 'reviews'}`,
+  bookingReviews: (n: number) => `${n} Booking.com ${n === 1 ? 'review' : 'reviews'}`,
+  reviewsTitle: ['What guests', 'say.'],
   loadMore: 'Load more',
   galleryLabel: 'Accommodation unit photos',
   closeGallery: 'Close gallery',
@@ -53,6 +55,9 @@ const en = {
 };
 
 export type Strings = typeof en;
+
+// Slovenian plural: 1 ocena, 2 oceni, 3–4 ocene, 5+ ocen (by the last two digits).
+const slReviews = (n: number) => [, 'ocena', 'oceni', 'ocene', 'ocene'][n % 100] ?? 'ocen';
 
 const sl: Strings = {
   htmlLang: 'sl',
@@ -81,8 +86,9 @@ const sl: Strings = {
   morePhotos: (name) => `Več fotografij: ${name}`,
   viewPhoto: (n, name) => `Fotografija ${n}: ${name}`,
   photosSoon: 'Fotografije kmalu',
-  // Slovenian plural: 1 ocena, 2 oceni, 3–4 ocene, 5+ ocen (by the last two digits).
-  googleReviews: (n) => `${n} ${[, 'ocena', 'oceni', 'ocene', 'ocene'][n % 100] ?? 'ocen'} na Googlu`,
+  googleReviews: (n) => `${n} ${slReviews(n)} na Googlu`,
+  bookingReviews: (n) => `${n} ${slReviews(n)} na Booking.com`,
+  reviewsTitle: ['Kaj pravijo', 'gostje.'],
   loadMore: 'Naloži več',
   galleryLabel: 'Fotografije apartmaja',
   closeGallery: 'Zapri galerijo',
