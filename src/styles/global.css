@@ -210,7 +210,9 @@ button { font: inherit; }
   .unit-side h1 { font-size: 52px; line-height: 1.05; }
   .unit-setting { margin: 0 0 4px !important; }
   .unit-key { margin-bottom: 8px; }
-  .unit-cover { flex: none; height: max(240px, calc(100svh - var(--header-height) - 510px)); }
+  /* Photo first, full width at 4:3; title, facts and Book follow below it. */
+  .unit-cover { order: -2; flex: none; height: auto; aspect-ratio: 4 / 3; }
+  .unit-side h1 { margin-top: 12px; }
   .unit-side > .unit-features { order: 1; margin-top: 12px; }
   .header { position: relative; }
   .menu-toggle { display: block; padding: 12px 0 12px 12px; border: 0; background: none; font: inherit; font-size: 14px; cursor: pointer; }
@@ -288,7 +290,6 @@ button { font: inherit; }
   .footer-top { flex-wrap: wrap; gap: 24px; }
   .footer-top .brand { width: 100%; }
   .footer-top > p { font-size: 13px; }
-  .unit-cover { height: max(200px, calc(100svh - var(--header-height) - 540px)); }
   .unit-side h1 { font-size: 47px; }
   .unit-key { font-size: 15px; }
   .detail-gallery { padding-bottom: 64px; }
