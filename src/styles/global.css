@@ -88,13 +88,15 @@ button { font: inherit; }
 .apartment { grid-column: span 2; position: relative; min-width: 0; display: flex; flex-direction: column; }
 .apartment h3 { margin-top: 20px; font-size: 24px; line-height: 1.2; letter-spacing: -.035em; }
 .apartment h3 a { transition: color .2s; }
-.apartment h3 a:hover, .apartment:has(.card-image:hover) h3 a { color: var(--accent); }
+.apartment h3 a:hover, .apartment:has(.card-image:hover) h3 a, .apartment.in-view h3 a { color: var(--accent); }
 .card-setting { margin-top: 6px !important; font-size: 16px; }
 .section-text { color: var(--muted); max-width: 52ch; }
 .section-text p + p { margin-top: 14px; }
 .card-facts { list-style: none; display: flex; flex-wrap: wrap; margin: 8px 0 0; padding: 0; font-size: 14px; color: var(--muted); }
 .card-facts li + li::before { content: '·'; margin-inline: 8px; }
 .card-image { display: block; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: var(--surface); border-radius: 3px; transition: box-shadow .3s; }
+/* .in-view: touch screens, set by ApartmentCard's script while the card crosses the middle of the screen. */
+.apartment.in-view .card-image { box-shadow: 0 14px 30px -14px color-mix(in srgb, var(--ink) 45%, transparent); }
 @media (hover: hover) {
   .apartment:hover .card-image { box-shadow: 0 14px 30px -14px color-mix(in srgb, var(--ink) 45%, transparent); }
 }

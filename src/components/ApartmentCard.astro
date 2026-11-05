@@ -26,3 +26,12 @@ const facts = [
     {facts.length > 0 && <ul class="card-facts">{facts.map(fact => <li>{fact}</li>)}</ul>}
   </div>
 </article>
+<script>
+  // Touch screens have no hover: highlight the card crossing the middle of the screen instead.
+  if (matchMedia('(hover: none)').matches) {
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) entry.target.classList.toggle('in-view', entry.isIntersecting);
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    document.querySelectorAll('.apartment').forEach((card) => observer.observe(card));
+  }
+</script>
