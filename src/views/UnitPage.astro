@@ -29,7 +29,6 @@ const otherUnits = property.units.filter(other => other.id !== unit.id);
         {unit.occupancyLabel && <li>{unit.occupancyLabel}</li>}
         {unit.areaSquareMetres && <li>{unit.areaSquareMetres} m²</li>}
       </ul>
-      <a class="sticky-book-link" href="#arrival">{t.goodToKnow}</a>
       <a class="button" href={booking} target="_blank" rel="noopener noreferrer">{t.bookNow}</a>
     </div>
   </div>
